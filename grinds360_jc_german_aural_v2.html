@@ -1,0 +1,2889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grinds360 · JC German Aural Vocab (2022–2024)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --g-black: #000000;
+    --g-white: #ffffff;
+    --g-red: #FF0000;
+    --g-red-deep: #cc0000;
+    --g-red-soft: #ffe5e5;
+    --ink: #0a0a0a;
+    --bg: #ffffff;
+    --bg-soft: #f7f7f7;
+    --bg-card: #ffffff;
+    --muted: #6b6b6b;
+    --border-soft: #e8e8e8;
+    --correct: #0a7d3a;
+    --correct-soft: #e6f7ec;
+    --wrong: #FF0000;
+    --wrong-soft: #ffe5e5;
+    --gold: #f5c518;
+    --mastered: #0a7d3a;
+    --weak: #FF0000;
+    --aural-accent: #2563eb;
+    --aural-accent-soft: #dbeafe;
+    --shadow-md: 4px 4px 0 var(--g-black);
+    --shadow-lg: 6px 6px 0 var(--g-black);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: 'Poppins', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 90% -5%, rgba(255,0,0,0.06) 0%, transparent 35%),
+      radial-gradient(circle at 0% 100%, rgba(0,0,0,0.04) 0%, transparent 40%),
+      var(--bg);
+  }
+
+  .shell { max-width: 880px; margin: 0 auto; padding: 28px 20px 64px; }
+
+  /* ---------- Brand bar ---------- */
+  .brand-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 2px solid var(--g-black);
+    margin-bottom: 24px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--g-black);
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--g-black);
+    color: var(--g-white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 16px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    background: var(--g-red);
+    top: -3px; right: -3px;
+  }
+  .logo-text { line-height: 1; }
+  .logo-text .accent { color: var(--g-red); font-weight: 900; }
+  .logo-sub {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 2px;
+  }
+  .brand-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g-white);
+    background: var(--g-black);
+    padding: 6px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand-tag .dot {
+    width: 6px; height: 6px;
+    background: var(--g-red);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    border: 2px solid var(--g-black);
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 28px 32px;
+    position: relative;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--g-red);
+  }
+  .hero::after {
+    content: 'AURAL';
+    position: absolute;
+    right: -10px; bottom: -30px;
+    font-size: 140px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--g-red);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-weight: 900;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    position: relative;
+    z-index: 1;
+  }
+  h1 .highlight { color: var(--g-red); }
+  .hero-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #c4c4c4;
+    max-width: 56ch;
+    line-height: 1.55;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-sub strong { color: var(--g-white); font-weight: 700; }
+
+  /* ---------- Dashboard ---------- */
+  .dashboard {
+    border: 2px solid var(--g-black);
+    background: var(--g-white);
+    padding: 20px 22px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+  }
+  .dashboard::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: var(--aural-accent);
+  }
+  .dashboard-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .dashboard-head h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .reset-link {
+    font-size: 11px;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: underline;
+    padding: 4px 6px;
+  }
+  .reset-link:hover { color: var(--g-red); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 14px;
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-num.mastered { color: var(--mastered); }
+  .stat-num.weak { color: var(--weak); }
+  .stat-num.streak { color: var(--g-red); }
+  .stat-num .accent { color: var(--g-red); }
+  .stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .stat-bar {
+    height: 6px;
+    background: var(--bg-soft);
+    border: 1px solid var(--g-black);
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .stat-bar-fill {
+    height: 100%;
+    background: var(--mastered);
+    transition: width 0.6s cubic-bezier(.2,.8,.2,1);
+  }
+
+  /* Cross-link */
+  .sibling-link {
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    border: 2px solid var(--g-black);
+    background: var(--bg-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+  .sibling-link .text { font-weight: 500; }
+  .sibling-link .text strong { font-weight: 700; }
+  .sibling-link a {
+    color: var(--g-red);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid var(--g-red);
+  }
+  .sibling-link a:hover { color: var(--g-black); border-color: var(--g-black); }
+
+  /* ---------- Legend ---------- */
+  .freq-legend {
+    margin-bottom: 24px;
+    padding: 16px 18px;
+    border: 2px solid var(--g-black);
+    background: var(--bg-soft);
+    position: relative;
+  }
+  .freq-legend::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+  }
+  .freq-legend h3 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .freq-legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+  }
+  .freq-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .stars { color: var(--gold); letter-spacing: -1px; font-size: 14px; }
+  .stars.s3 { color: var(--g-red); }
+  .stars-gray { color: #c4c4c4; }
+
+  /* ---------- Progress (in-quiz) ---------- */
+  .progress-wrap {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .progress-track {
+    flex: 1;
+    min-width: 180px;
+    height: 10px;
+    background: var(--bg-soft);
+    border: 2px solid var(--g-black);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--g-red);
+    width: 0%;
+    transition: width 0.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .progress-text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+  .score-pill {
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 6px 12px;
+    letter-spacing: 0.05em;
+    border: 2px solid var(--g-black);
+  }
+  .score-pill .score-num { color: var(--g-red); }
+
+  /* ---------- Badges ---------- */
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  .round-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--g-white);
+    border: 2px solid var(--g-black);
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .round-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--aural-accent);
+  }
+  .freq-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 2px solid var(--g-black);
+    padding: 5px 10px 5px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--g-white);
+  }
+  .freq-badge.high {
+    background: var(--g-red);
+    color: var(--g-white);
+    border-color: var(--g-red);
+  }
+  .freq-badge.high .stars { color: var(--g-white); }
+  .freq-badge.med {
+    background: var(--gold);
+    color: var(--g-black);
+  }
+  .freq-badge.med .stars { color: var(--g-black); }
+  .freq-badge .label {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 9px;
+    border: 2px solid var(--g-black);
+  }
+  .status-badge.mastered {
+    background: var(--correct-soft);
+    color: var(--mastered);
+    border-color: var(--mastered);
+  }
+  .status-badge.weak {
+    background: var(--wrong-soft);
+    color: var(--weak);
+    border-color: var(--weak);
+  }
+  .status-badge.learning { background: var(--g-white); }
+  .status-badge.new {
+    background: var(--g-black);
+    color: var(--g-white);
+  }
+  .year-tags { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+  .year-tag {
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 4px 7px;
+    letter-spacing: 0.05em;
+  }
+  .year-tag.muted { background: #e0e0e0; color: #999; }
+
+  /* ---------- Card ---------- */
+  .card {
+    background: var(--bg-card);
+    border: 2px solid var(--g-black);
+    padding: 28px 26px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    min-height: 320px;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--aural-accent);
+  }
+
+  .question-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .question {
+    font-weight: 700;
+    font-size: clamp(20px, 3.2vw, 28px);
+    line-height: 1.3;
+    margin-bottom: 6px;
+    letter-spacing: -0.015em;
+    color: var(--g-black);
+  }
+  .question .de {
+    color: var(--g-red);
+    font-weight: 800;
+    font-style: italic;
+  }
+  .question-hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 22px;
+    font-weight: 400;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 540px) {
+    .options { grid-template-columns: 1fr; }
+  }
+  .opt {
+    background: var(--g-white);
+    border: 2px solid var(--g-black);
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 3px 3px 0 var(--g-black);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--g-black);
+  }
+  .opt-letter {
+    font-size: 11px;
+    font-weight: 700;
+    width: 24px; height: 24px;
+    background: var(--g-black);
+    color: var(--g-white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .opt:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--g-red);
+    border-color: var(--g-red);
+  }
+  .opt:hover:not(:disabled) .opt-letter { background: var(--g-red); }
+  .opt:active:not(:disabled) {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--g-black);
+  }
+  .opt:disabled { cursor: default; }
+  .opt.correct {
+    background: var(--correct-soft);
+    border-color: var(--correct);
+    color: var(--correct);
+    font-weight: 700;
+    box-shadow: 3px 3px 0 var(--correct);
+  }
+  .opt.correct .opt-letter { background: var(--correct); }
+  .opt.wrong {
+    background: var(--wrong-soft);
+    border-color: var(--g-red);
+    color: var(--g-red);
+    text-decoration: line-through;
+    box-shadow: 3px 3px 0 var(--g-red);
+  }
+  .opt.wrong .opt-letter { background: var(--g-red); }
+  .opt.faded { opacity: 0.4; }
+
+  /* ---------- Feedback ---------- */
+  .feedback {
+    border-top: 2px solid var(--g-black);
+    padding-top: 18px;
+    margin-top: 8px;
+    min-height: 60px;
+    display: none;
+  }
+  .feedback.show { display: block; animation: pop 0.35s ease-out; }
+  @keyframes pop {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .feedback-title {
+    font-weight: 800;
+    font-size: 18px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .feedback-title .badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .feedback.correct .feedback-title { color: var(--correct); }
+  .feedback.correct .badge { background: var(--correct); color: var(--g-white); }
+  .feedback.wrong .feedback-title { color: var(--g-red); }
+  .feedback.wrong .badge { background: var(--g-red); color: var(--g-white); }
+
+  .transcript {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: var(--aural-accent-soft);
+    border-left: 4px solid var(--aural-accent);
+    font-size: 14px;
+    line-height: 1.55;
+    font-style: italic;
+  }
+  .transcript-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--aural-accent);
+    font-style: normal;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .transcript strong {
+    background: var(--gold);
+    color: var(--g-black);
+    padding: 1px 4px;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .feedback-note {
+    font-size: 14px;
+    color: var(--g-black);
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+  .feedback-note strong {
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 1px 5px;
+    font-weight: 600;
+  }
+  .feedback-note em {
+    color: var(--g-red);
+    font-style: italic;
+    font-weight: 600;
+  }
+  .feedback-meta {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .feedback-meta-pill {
+    padding: 8px 12px;
+    background: var(--bg-soft);
+    border-left: 4px solid var(--g-red);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .feedback-meta-pill strong { color: var(--g-red); font-weight: 800; }
+  .feedback-meta-pill.streak-up {
+    border-left-color: var(--mastered);
+    background: var(--correct-soft);
+  }
+  .feedback-meta-pill.streak-up strong { color: var(--mastered); }
+  .feedback-meta-pill.mastered-now {
+    background: var(--mastered);
+    color: var(--g-white);
+    border-left-color: var(--g-black);
+    font-weight: 700;
+    animation: pop 0.4s ease-out;
+  }
+  .feedback-meta-pill.mastered-now strong { color: var(--gold); }
+
+  /* ---------- Controls ---------- */
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    gap: 12px;
+  }
+  .btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 13px 22px;
+    border: 2px solid var(--g-black);
+    background: var(--g-red);
+    color: var(--g-white);
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--g-black);
+    transition: all 0.15s ease;
+  }
+  .btn:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--g-black);
+    background: var(--g-red-deep);
+  }
+  .btn:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--g-black);
+  }
+  .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .btn.ghost {
+    background: var(--g-white);
+    color: var(--g-black);
+  }
+  .btn.ghost:hover:not(:disabled) {
+    background: var(--g-black);
+    color: var(--g-white);
+  }
+  .btn.sm { padding: 9px 14px; font-size: 11px; }
+
+  /* ---------- Start screen ---------- */
+  .start-card {
+    background: var(--bg-card);
+    border: 2px solid var(--g-black);
+    padding: 32px 28px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .start-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--aural-accent);
+  }
+  .start-card h2 {
+    font-weight: 900;
+    font-size: clamp(26px, 4.2vw, 36px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -0.025em;
+  }
+  .start-card h2 .stamp {
+    background: var(--aural-accent);
+    color: var(--g-white);
+    padding: 2px 12px;
+    display: inline-block;
+    transform: rotate(-1.5deg);
+  }
+  .start-card p {
+    color: var(--g-black);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    max-width: 60ch;
+  }
+  .start-card p strong {
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 1px 6px;
+    font-weight: 600;
+  }
+
+  .smart-drills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin: 22px 0;
+  }
+  .drill-card {
+    border: 2px solid var(--g-black);
+    padding: 16px;
+    background: var(--g-white);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.15s ease;
+    box-shadow: 3px 3px 0 var(--g-black);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .drill-card.primary {
+    background: var(--g-black);
+    color: var(--g-white);
+  }
+  .drill-card.weak {
+    background: var(--wrong-soft);
+    border-color: var(--g-red);
+  }
+  .drill-card.priority {
+    background: var(--g-red);
+    color: var(--g-white);
+    border-color: var(--g-red);
+  }
+  .drill-card:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--g-red);
+  }
+  .drill-card.priority:hover { box-shadow: 5px 5px 0 var(--g-black); }
+  .drill-card:disabled { opacity: 0.4; cursor: not-allowed; }
+  .drill-card-icon { font-size: 24px; line-height: 1; margin-bottom: 4px; }
+  .drill-card-title { font-weight: 800; font-size: 15px; }
+  .drill-card-desc {
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.8;
+    line-height: 1.4;
+  }
+  .drill-card-count {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.7;
+  }
+
+  .topic-picker-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 24px 0 12px;
+  }
+  .rounds-list {
+    list-style: none;
+    margin: 0 0 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .round-card {
+    border: 2px solid var(--g-black);
+    padding: 12px 14px;
+    background: var(--g-white);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.15s ease;
+    box-shadow: 3px 3px 0 var(--g-black);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .round-card:hover {
+    background: var(--g-black);
+    color: var(--g-white);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--aural-accent);
+  }
+  .round-card:hover .round-card-num { background: var(--aural-accent); }
+  .round-card:hover .round-card-meta { color: #c4c4c4; }
+  .round-card:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--g-black);
+  }
+  .round-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .round-card-num {
+    font-size: 10px;
+    font-weight: 800;
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 3px 8px;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .round-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    flex: 1;
+  }
+  .round-mastery {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .round-card:hover .round-mastery { color: #c4c4c4; }
+  .mastery-bar {
+    flex: 1;
+    height: 5px;
+    background: var(--bg-soft);
+    border: 1px solid var(--g-black);
+    overflow: hidden;
+    max-width: 80px;
+  }
+  .round-card:hover .mastery-bar { border-color: var(--g-white); }
+  .mastery-fill { height: 100%; background: var(--mastered); }
+  .round-card-meta {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .round-card-meta .stars { color: var(--gold); font-size: 12px; letter-spacing: -1px; }
+  .round-card-meta .stars-gray { color: #d0d0d0; }
+  .round-card:hover .round-card-meta .stars-gray { color: #555; }
+
+  /* ---------- Results ---------- */
+  .results-hero {
+    text-align: center;
+    padding: 40px 24px 36px;
+    border: 2px solid var(--g-black);
+    background: var(--g-black);
+    color: var(--g-white);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .results-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--aural-accent);
+  }
+  .results-hero .stamp {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: var(--aural-accent);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .results-hero .score-big {
+    font-weight: 900;
+    font-size: clamp(60px, 14vw, 120px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .results-hero .score-big .of {
+    color: var(--aural-accent);
+    font-size: 0.4em;
+    font-weight: 700;
+  }
+  .results-hero .verdict {
+    font-size: 16px;
+    margin-top: 14px;
+    color: #c4c4c4;
+    max-width: 40ch;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.5;
+  }
+  .results-hero .verdict strong { color: var(--g-white); font-weight: 700; }
+
+  .review {
+    border: 2px solid var(--g-black);
+    background: var(--g-white);
+    padding: 24px 22px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .review::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--aural-accent);
+  }
+  .review h3 {
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--g-black);
+  }
+  .review-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-soft);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .review-item:last-child { border-bottom: none; }
+  .review-icon {
+    width: 24px; height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    border: 2px solid var(--g-black);
+    margin-top: 2px;
+  }
+  .review-icon.ok {
+    background: var(--correct-soft);
+    color: var(--correct);
+    border-color: var(--correct);
+  }
+  .review-icon.no {
+    background: var(--wrong-soft);
+    color: var(--g-red);
+    border-color: var(--g-red);
+  }
+  .review-q {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 5px;
+    line-height: 1.35;
+  }
+  .review-q .de { color: var(--g-red); font-weight: 700; font-style: italic; }
+  .review-q .mini-freq {
+    font-size: 10px;
+    margin-left: 6px;
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 2px 6px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+  }
+  .review-q .mini-freq.high { background: var(--g-red); }
+  .review-q .mini-freq.med { background: var(--gold); color: var(--g-black); }
+  .review-a {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .review-a strong {
+    color: var(--g-black);
+    background: #fff3a0;
+    padding: 0 4px;
+    font-weight: 600;
+  }
+  .review-a em {
+    color: var(--g-red);
+    font-style: italic;
+  }
+  .review-transcript {
+    margin-top: 6px;
+    padding: 8px 10px;
+    background: var(--aural-accent-soft);
+    border-left: 3px solid var(--aural-accent);
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .next-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .next-actions .btn { width: 100%; text-align: center; }
+
+  footer {
+    text-align: center;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-soft);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  footer strong { color: var(--g-black); font-weight: 700; }
+  footer .dot { color: var(--g-red); }
+
+  .hidden { display: none !important; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  .shake { animation: shake 0.4s ease-in-out; }
+
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 12px 20px;
+    border: 2px solid var(--g-black);
+    box-shadow: 4px 4px 0 var(--g-red);
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    max-width: 90vw;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="brand-bar">
+    <a class="logo" href="https://grinds360.ie">
+      <div class="logo-text">
+        Grinds<span class="accent">360</span>
+        <span class="logo-sub">Junior Cycle Revision</span>
+      </div>
+    </a>
+    <div class="brand-tag">
+      <span class="dot"></span>
+      German · Aural
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Aural Vocab Trainer · 3 Years of Listening Papers</div>
+    <h1>JC German<br><span class="highlight">Aural Vocab Drill</span></h1>
+    <p class="hero-sub">Drilled on the exact vocab tested in the <strong>listening section</strong> — numbers, prices, times, shopping, phone calls and announcements from the 2022–2024 papers.</p>
+  </div>
+
+  <div id="start-screen">
+    <div class="dashboard">
+      <div class="dashboard-head">
+        <h3>Your aural progress</h3>
+        <button class="reset-link" id="reset-progress-btn">Reset progress</button>
+      </div>
+      <div class="stat-grid">
+        <div>
+          <div class="stat-num mastered" id="stat-mastered">0</div>
+          <div class="stat-label">Mastered</div>
+          <div class="stat-bar"><div class="stat-bar-fill" id="stat-mastered-bar"></div></div>
+        </div>
+        <div>
+          <div class="stat-num weak" id="stat-weak">0</div>
+          <div class="stat-label">Weak words</div>
+        </div>
+        <div>
+          <div class="stat-num" id="stat-seen">0</div>
+          <div class="stat-label">Words seen</div>
+        </div>
+        <div>
+          <div class="stat-num streak" id="stat-streak">0</div>
+          <div class="stat-label">Day streak 🔥</div>
+        </div>
+        <div>
+          <div class="stat-num" id="stat-accuracy">—</div>
+          <div class="stat-label">Accuracy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="freq-legend">
+      <h3>Frequency badges</h3>
+      <div class="freq-legend-grid">
+        <div class="freq-legend-item"><span class="stars s3">★★★</span> Asked all 3 years</div>
+        <div class="freq-legend-item"><span class="stars">★★</span><span class="stars-gray">★</span> Asked 2 of 3 years</div>
+        <div class="freq-legend-item"><span class="stars">★</span><span class="stars-gray">★★</span> Asked 1 of 3 years</div>
+      </div>
+    </div>
+
+    <div class="start-card">
+      <h2>Train your <span class="stamp">Ohren!</span></h2>
+      <p>Vocab pulled directly from the <strong>2022, 2023 &amp; 2024</strong> listening transcripts. The aural section tests different things from the reading paper — <strong>numbers, prices, times, dates, phone vocabulary</strong> and short shopping/service phrases. Your weak words get drilled more often automatically.</p>
+
+      <div class="topic-picker-label">Smart drills</div>
+      <div class="smart-drills">
+        <button class="drill-card primary" id="drill-smart">
+          <div class="drill-card-icon">🧠</div>
+          <div class="drill-card-title">Smart drill</div>
+          <div class="drill-card-desc">Weak words first, then frequency-weighted. 20 questions.</div>
+        </button>
+        <button class="drill-card weak" id="drill-weak">
+          <div class="drill-card-icon">⚠️</div>
+          <div class="drill-card-title">Weak words only</div>
+          <div class="drill-card-desc">Just the ones you've gotten wrong.</div>
+          <div class="drill-card-count" id="weak-count">0 words</div>
+        </button>
+        <button class="drill-card priority" id="drill-priority">
+          <div class="drill-card-icon">★</div>
+          <div class="drill-card-title">Top priority</div>
+          <div class="drill-card-desc">The ★★ and ★★★ must-knows.</div>
+        </button>
+      </div>
+
+      <div class="topic-picker-label">Pick a topic — or do the full drill</div>
+      <ul class="rounds-list" id="rounds-list"></ul>
+
+      <div style="margin-top: 14px;">
+        <button class="btn ghost" id="start-btn">Full drill (all questions)</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="quiz-screen" class="hidden">
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-text" id="progress-text">01 / 30</div>
+      <div class="score-pill">Score: <span class="score-num" id="score-pill-num">0</span></div>
+      <button class="btn ghost sm" id="back-to-topics">← Topics</button>
+    </div>
+
+    <div class="card" id="quiz-card">
+      <div class="badge-row">
+        <div class="round-badge" id="round-badge">Round 1</div>
+        <div class="freq-badge" id="freq-badge">
+          <span class="stars"></span>
+          <span class="label" id="freq-badge-label"></span>
+        </div>
+        <div class="status-badge" id="status-badge">New</div>
+        <div class="year-tags" id="year-tags"></div>
+      </div>
+      <div class="question-label" id="question-label">Question 1</div>
+      <div class="question" id="question-text">—</div>
+      <div class="question-hint" id="question-hint"></div>
+
+      <div class="options" id="options"></div>
+
+      <div class="feedback" id="feedback">
+        <div class="feedback-title" id="feedback-title"></div>
+        <div class="transcript" id="transcript-box" style="display:none">
+          <span class="transcript-label">In the transcript</span>
+          <span id="transcript-text"></span>
+        </div>
+        <div class="feedback-note" id="feedback-note"></div>
+        <div class="feedback-meta" id="feedback-meta"></div>
+      </div>
+
+      <div class="controls">
+        <button class="btn ghost" id="skip-btn">Skip</button>
+        <button class="btn" id="next-btn" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="results-screen" class="hidden">
+    <div class="results-hero">
+      <div class="stamp">— Endergebnis · Aural Score —</div>
+      <div class="score-big"><span id="final-score">0</span><span class="of"> / <span id="final-total">0</span></span></div>
+      <div class="verdict" id="verdict">—</div>
+    </div>
+
+    <div class="review">
+      <h3>Word Review</h3>
+      <div id="review-list"></div>
+    </div>
+
+    <div class="next-actions" id="next-actions"></div>
+  </div>
+
+  <footer>
+    <strong>Grinds360</strong> <span class="dot">●</span> JC German Aural Trainer 2022–2024 <span class="dot">●</span> grinds360.ie
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// QUESTIONS — drawn directly from aural transcripts 2022-2024
+// ============================================================
+const ALL_QUESTIONS = [
+
+  // ============================================================
+  // ROUND 1: NUMBERS, PRICES & TIMES (highest frequency)
+  // ============================================================
+  {
+    id: "num-halb-sieben",
+    round: "numbers",
+    prompt: "<span class='de'>halb sieben</span> — what time is this?",
+    hint: "Alban's wake-up time, 2024 paper — a classic trap",
+    options: ["6:00", "6:30", "7:00", "7:30"],
+    answer: 1,
+    transcript: "Jeden Morgen stehe ich um <strong>halb sieben</strong> auf.",
+    note: "⚠️ <strong>halb sieben</strong> = 6:30, NOT 7:30! In German, <em>halb sieben</em> means 'half-way TO seven' (i.e. 6:30). This catches many students out every year.",
+    frequency: 2,
+    years: [2023, 2024]
+  },
+  {
+    id: "num-halb-acht",
+    round: "numbers",
+    prompt: "<span class='de'>halb acht</span> — what time is this?",
+    hint: "Student 3, 2023 paper",
+    options: ["7:00", "7:30", "8:00", "8:30"],
+    answer: 1,
+    transcript: "Meine Schule beginnt morgens um <strong>halb acht</strong>.",
+    note: "⚠️ <strong>halb acht</strong> = 7:30, NOT 8:30. Same trap as <em>halb sieben</em> — always one hour earlier than English speakers expect.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "num-viertel-vor",
+    round: "numbers",
+    prompt: "<span class='de'>Viertel vor acht</span> — what time is this?",
+    hint: "Student 2, 2023 paper",
+    options: ["7:15", "7:45", "8:15", "8:45"],
+    answer: 1,
+    transcript: "Die Schule beginnt um <strong>Viertel vor acht</strong>.",
+    note: "<strong>Viertel vor acht</strong> = 7:45 (a quarter BEFORE 8). <em>Viertel nach</em> = quarter PAST. Memorise: <em>vor</em> = before, <em>nach</em> = after.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "num-fuenfzehn-vs-fuenfzig",
+    round: "numbers",
+    prompt: "<span class='de'>fünfzehn Euro</span> — how much?",
+    hint: "Ticket price, 2024 paper",
+    options: ["5 Euro", "15 Euro", "50 Euro", "55 Euro"],
+    answer: 1,
+    transcript: "Drei Eintrittskarten, das macht zusammen <strong>15 (fünfzehn) Euro</strong>.",
+    note: "<strong>fünfzehn</strong> = 15. ⚠️ Listen carefully — <em>fünfzehn</em> (15) and <em>fünfzig</em> (50) sound similar. The <em>-zehn</em> ending = teens, <em>-zig</em> = tens.",
+    frequency: 3,
+    years: [2022, 2023, 2024]
+  },
+  {
+    id: "num-fuenfundsiebzig",
+    round: "numbers",
+    prompt: "<span class='de'>fünfundsiebzig</span> — what number?",
+    hint: "Hotel room price, 2023 paper",
+    options: ["57", "65", "75", "85"],
+    answer: 2,
+    transcript: "Das Zimmer kostet insgesamt <strong>75 (fünfundsiebzig) Euro pro Nacht</strong> mit Frühstück.",
+    note: "<strong>fünfundsiebzig</strong> = 75. In German, the unit comes BEFORE the tens: <em>fünf-und-siebzig</em> (5-and-70). Same for all two-digit numbers above 20.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "num-einhundertfuenfundneunzig",
+    round: "numbers",
+    prompt: "<span class='de'>einhundertfünfundneunzig</span> — what number?",
+    hint: "Football camp price, 2024 paper",
+    options: ["95", "150", "195", "295"],
+    answer: 2,
+    transcript: "Das Camp kostet <strong>195 (einhundertfünfundneunzig) Euro</strong>.",
+    note: "<strong>einhundertfünfundneunzig</strong> = 195. Built up as: <em>einhundert</em> (100) + <em>fünfundneunzig</em> (95). Hundreds first, then the rest.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "num-dreihundertzwanzig",
+    round: "numbers",
+    prompt: "<span class='de'>dreihundertzwanzig</span> — what number?",
+    hint: "Monika's Christmas savings, 2023 paper",
+    options: ["32", "230", "320", "3020"],
+    answer: 2,
+    transcript: "<strong>320 (dreihundertzwanzig) Euro</strong> habe ich für Geschenke.",
+    note: "<strong>dreihundertzwanzig</strong> = 320. <em>drei</em> (3) + <em>hundert</em> (hundred) + <em>zwanzig</em> (20). Listen for the hundreds first.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "num-zwoelf-vs-zwei",
+    round: "numbers",
+    prompt: "<span class='de'>zwölf</span> — what number?",
+    hint: "Exchange students from Ireland, 2024",
+    options: ["2", "12", "20", "22"],
+    answer: 1,
+    transcript: "Im nächsten Monat kommen <strong>zwölf Austauschschüler aus Irland</strong>.",
+    note: "<strong>zwölf</strong> = 12. ⚠️ Don't confuse with <em>zwei</em> (2). They sound similar but <em>zwölf</em> has that distinctive 'ö' sound.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "num-sieben-vs-siebzehn",
+    round: "numbers",
+    prompt: "<span class='de'>sieben Jahre</span> — how many years?",
+    hint: "Pavo learning English, 2022",
+    options: ["1 year", "7 years", "17 years", "70 years"],
+    answer: 1,
+    transcript: "<strong>Ich lerne seit sieben Jahren Englisch.</strong>",
+    note: "<strong>sieben</strong> = 7. ⚠️ <em>sieben</em> (7) vs <em>siebzehn</em> (17) — listen for that extra <em>-zehn</em> ending which means teens.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "num-pro-person",
+    round: "numbers",
+    prompt: "What does <span class='de'>pro Person</span> mean?",
+    hint: "Group ticket pricing, 2022 paper",
+    options: ["For each room", "Per person", "For the family", "Per ticket"],
+    answer: 1,
+    transcript: "Jeder von uns zahlt nur 15,20 Euro <strong>pro Person</strong>.",
+    note: "<strong>pro Person</strong> = per person. <em>pro</em> is widely used: <em>pro Tag</em> (per day), <em>pro Woche</em> (per week), <em>pro Nacht</em> (per night).",
+    frequency: 2,
+    years: [2022, 2023]
+  },
+  {
+    id: "num-komma",
+    round: "numbers",
+    prompt: "<span class='de'>fünfzehn Euro zwanzig</span> — how is this written?",
+    hint: "Quer-durchs-Land-Ticket, 2022",
+    options: ["15,20 €", "15.20 €", "15 €", "1520 €"],
+    answer: 0,
+    transcript: "Jeder von uns zahlt nur <strong>15,20 Euro (fünfzehn Euro zwanzig)</strong> pro Person.",
+    note: "<strong>15,20 €</strong>. In German prices, the comma is the decimal separator (English uses a dot). Read as 'fünfzehn Euro zwanzig'.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "num-cent",
+    round: "numbers",
+    prompt: "<span class='de'>90 Cent</span> — how much?",
+    hint: "Postcard to Ireland, 2023",
+    options: ["19 cent", "90 cent", "€1.90", "€9"],
+    answer: 1,
+    transcript: "Eine Postkarte nach Irland kostet <strong>90 Cent</strong>.",
+    note: "<strong>neunzig</strong> = 90. Sounds similar to <em>neunzehn</em> (19) — listen for that <em>-zig</em> tens ending.",
+    frequency: 1,
+    years: [2023]
+  },
+
+  // ============================================================
+  // ROUND 2: DATES & DAYS
+  // ============================================================
+  {
+    id: "dat-donnerstag",
+    round: "dates",
+    prompt: "What day is <span class='de'>Donnerstag</span>?",
+    hint: "Used in announcements every year",
+    options: ["Tuesday", "Wednesday", "Thursday", "Friday"],
+    answer: 2,
+    transcript: "Am <strong>Donnerstag</strong> und Freitag gibt es eine Hitzewelle.",
+    note: "<strong>Donnerstag</strong> = Thursday. <em>Donner</em> = thunder + <em>Tag</em> = day. Order: Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag.",
+    frequency: 3,
+    years: [2022, 2023, 2024]
+  },
+  {
+    id: "dat-freitag",
+    round: "dates",
+    prompt: "What day is <span class='de'>Freitag</span>?",
+    hint: "Often the day of an event in the listening",
+    options: ["Wednesday", "Thursday", "Friday", "Saturday"],
+    answer: 2,
+    transcript: "Am Donnerstag und <strong>Freitag</strong> gibt es eine Hitzewelle.",
+    note: "<strong>Freitag</strong> = Friday. <em>frei</em> = free + <em>Tag</em> = day. Easy memory hook: nearly the weekend!",
+    frequency: 3,
+    years: [2022, 2023, 2024]
+  },
+  {
+    id: "dat-samstag",
+    round: "dates",
+    prompt: "What day is <span class='de'>Samstag</span>?",
+    hint: "Alban visits his grandma on this day, 2024",
+    options: ["Friday", "Saturday", "Sunday", "Monday"],
+    answer: 1,
+    transcript: "<strong>Samstags</strong> besuche ich meine Oma.",
+    note: "<strong>Samstag</strong> = Saturday. Note: in southern Germany/Austria they sometimes say <em>Sonnabend</em> instead. Adding -s makes it 'every Saturday'.",
+    frequency: 2,
+    years: [2022, 2024]
+  },
+  {
+    id: "dat-sonntag",
+    round: "dates",
+    prompt: "What day is <span class='de'>Sonntag</span>?",
+    hint: "Alban does nothing on this day, 2024",
+    options: ["Friday", "Saturday", "Sunday", "Monday"],
+    answer: 2,
+    transcript: "<strong>Sonntags</strong> bin ich faul. Ich bleibe zu Hause und mache nichts.",
+    note: "<strong>Sonntag</strong> = Sunday. <em>Sonne</em> = sun + <em>Tag</em> = day. <em>faul</em> = lazy.",
+    frequency: 2,
+    years: [2022, 2024]
+  },
+  {
+    id: "dat-mai",
+    round: "dates",
+    prompt: "What month is <span class='de'>Mai</span>?",
+    hint: "Muttertag date, 2024",
+    options: ["March", "May", "June", "July"],
+    answer: 1,
+    transcript: "Am Sonntag, den 11. <strong>Mai</strong>, ist Muttertag in Deutschland.",
+    note: "<strong>Mai</strong> = May. Months in German are mostly similar to English: <em>Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember</em>.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "dat-juli-vs-juni",
+    round: "dates",
+    prompt: "What month is <span class='de'>Juli</span>?",
+    hint: "Football camp date, 2024",
+    options: ["June", "July", "August", "September"],
+    answer: 1,
+    transcript: "Das Camp beginnt am 16. <strong>Juli</strong>.",
+    note: "<strong>Juli</strong> = July. ⚠️ Easy to confuse with <em>Juni</em> (June). In speech, Germans sometimes say <em>Julei</em> to make it clearer.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "dat-september",
+    round: "dates",
+    prompt: "What month is <span class='de'>September</span>?",
+    hint: "Day of Languages, 2023",
+    options: ["August", "September", "October", "November"],
+    answer: 1,
+    transcript: "Heute ist der 26. <strong>September</strong> und wir feiern den europäischen Tag der Sprachen.",
+    note: "<strong>September</strong> = September. Same as English — Sept-Oct-Nov-Dec are all very close in both languages.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "dat-dezember",
+    round: "dates",
+    prompt: "What month is <span class='de'>Dezember</span>?",
+    hint: "Christmas market trip, 2023",
+    options: ["October", "November", "December", "January"],
+    answer: 2,
+    transcript: "Nächsten Donnerstag, den 1. <strong>Dezember</strong>, besucht die Klasse den Weihnachtsmarkt.",
+    note: "<strong>Dezember</strong> = December. <em>Weihnachten</em> (Christmas) is on the 25th, but Germans celebrate <em>Heiligabend</em> (Christmas Eve) on the 24th.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "dat-naechstes-jahr",
+    round: "dates",
+    prompt: "What does <span class='de'>nächstes Jahr</span> mean?",
+    hint: "Muttertag planning, 2024",
+    options: ["This year", "Last year", "Next year", "Every year"],
+    answer: 2,
+    transcript: "<strong>Nächstes Jahr</strong> ist am Sonntag, den 11. Mai, Muttertag in Deutschland.",
+    note: "<strong>nächstes Jahr</strong> = next year. <em>letztes Jahr</em> = last year. <em>dieses Jahr</em> = this year. <em>jedes Jahr</em> = every year.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "dat-naechsten-monat",
+    round: "dates",
+    prompt: "What does <span class='de'>im nächsten Monat</span> mean?",
+    hint: "Exchange students arriving, 2024",
+    options: ["This month", "Last month", "Next month", "Every month"],
+    answer: 2,
+    transcript: "<strong>Im nächsten Monat</strong> kommen zwölf Austauschschüler aus Irland.",
+    note: "<strong>im nächsten Monat</strong> = next month. <em>Monat</em> = month (singular), <em>Monate</em> = months (plural).",
+    frequency: 1,
+    years: [2024]
+  },
+
+  // ============================================================
+  // ROUND 3: SHOPPING & SERVICE PHRASES
+  // ============================================================
+  {
+    id: "sho-wie-kann-ich-helfen",
+    round: "shopping",
+    prompt: "<span class='de'>Wie kann ich Ihnen helfen?</span>",
+    hint: "Asked by shop staff in 2023 and 2024 papers",
+    options: ["What's your name?", "How can I help you?", "How are you?", "What do you want?"],
+    answer: 1,
+    transcript: "Guten Tag, <strong>wie kann ich Ihnen helfen?</strong>",
+    note: "<strong>Wie kann ich Ihnen helfen?</strong> = How can I help you? (formal — using <em>Ihnen</em>). Standard opener in any German shop, hotel, or office.",
+    frequency: 2,
+    years: [2023, 2024]
+  },
+  {
+    id: "sho-ich-moechte",
+    round: "shopping",
+    prompt: "<span class='de'>Ich möchte Blumen kaufen.</span>",
+    hint: "Customer at the florist, 2024",
+    options: ["I'm looking at flowers", "I would like to buy flowers", "I sell flowers", "Where are the flowers?"],
+    answer: 1,
+    transcript: "Guten Tag! <strong>Ich möchte Blumen kaufen.</strong>",
+    note: "<strong>Ich möchte ... kaufen</strong> = I would like to buy. <em>möchte</em> is the polite form of <em>wollen</em> (to want). <em>Blumen</em> = flowers.",
+    frequency: 2,
+    years: [2023, 2024]
+  },
+  {
+    id: "sho-ich-haette-gern",
+    round: "shopping",
+    prompt: "<span class='de'>Ich hätte gern 200 Gramm Schinken.</span>",
+    hint: "At the deli counter, 2023",
+    options: ["I had 200g of ham", "I would like 200g of ham", "I'm out of ham", "200g of ham, please"],
+    answer: 1,
+    transcript: "Guten Tag, <strong>ich hätte gern 200 Gramm Schinken</strong>, 150 Gramm Salami und 400 Gramm Hackfleisch.",
+    note: "<strong>Ich hätte gern...</strong> = I would like... Very polite, common in shops. <em>Schinken</em> = ham, <em>Salami</em> = salami, <em>Hackfleisch</em> = mince.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "sho-sonst-wunsch",
+    round: "shopping",
+    prompt: "<span class='de'>Sonst noch einen Wunsch?</span>",
+    hint: "Asked after the customer's main order, 2023",
+    options: ["What's the time?", "Cash or card?", "Anything else?", "Do you need a bag?"],
+    answer: 2,
+    transcript: "<strong>Sonst noch einen Wunsch?</strong>",
+    note: "<strong>Sonst noch einen Wunsch?</strong> = Anything else? (literally 'Otherwise still a wish?'). Classic till-counter question. <em>Wunsch</em> = wish.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "sho-was-kostet",
+    round: "shopping",
+    prompt: "<span class='de'>Was kostet eine Postkarte?</span>",
+    hint: "Asked at the post office, 2023 / shop, 2022",
+    options: ["Where is a postcard?", "How much is a postcard?", "Have you got postcards?", "Is the postcard here?"],
+    answer: 1,
+    transcript: "<strong>Was kostet eine Postkarte nach Irland</strong>, bitte?",
+    note: "<strong>Was kostet ...?</strong> = How much does ... cost? Synonym: <em>Wie viel kostet ...?</em>",
+    frequency: 2,
+    years: [2022, 2023]
+  },
+  {
+    id: "sho-eintrittskarten",
+    round: "shopping",
+    prompt: "What are <span class='de'>Eintrittskarten</span>?",
+    hint: "Bought in dialogue A, 2024",
+    options: ["Birthday cards", "Postcards", "Entry tickets", "Christmas cards"],
+    answer: 2,
+    transcript: "<strong>Drei Eintrittskarten, bitte.</strong>",
+    note: "<strong>Eintrittskarten</strong> = entry tickets. <em>Eintritt</em> = entry/admission, <em>Karte</em> = card/ticket. <em>Fahrkarte</em> = travel ticket.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "sho-zweiten-stock",
+    round: "shopping",
+    prompt: "What does <span class='de'>im zweiten Stock</span> mean?",
+    hint: "Where to find hats in the shop, 2024",
+    options: ["Ground floor", "First floor", "Second floor", "Top floor"],
+    answer: 2,
+    transcript: "Da sind Sie bei uns <strong>im zweiten Stock</strong> genau richtig.",
+    note: "<strong>im zweiten Stock</strong> = on the second floor. <em>Erdgeschoss</em> = ground floor, <em>erster Stock</em> = first floor. Same as Ireland — but different from the US (where 'first floor' = ground floor).",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "sho-die-nehme-ich",
+    round: "shopping",
+    prompt: "<span class='de'>Die nehme ich!</span>",
+    hint: "Said by Herr Schulz about the hat, 2024",
+    options: ["Take this away!", "I'll take it!", "How much is it?", "Where is it?"],
+    answer: 1,
+    transcript: "Diese Mütze kostet ja nur fünf Euro. <strong>Die nehme ich!</strong>",
+    note: "<strong>Die nehme ich!</strong> = I'll take it! / I'll take that one! Useful sentence to remember when shopping. <em>nehmen</em> = to take.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "sho-broetchen",
+    round: "shopping",
+    prompt: "What are <span class='de'>Brötchen</span>?",
+    hint: "Bakery order, 2023",
+    options: ["Cakes", "Bread rolls", "Sausages", "Pretzels"],
+    answer: 1,
+    transcript: "Ich hätte gern <strong>sechs Brötchen</strong>, bitte.",
+    note: "<strong>Brötchen</strong> = bread roll (literally 'little bread'). Common bakery (<em>Bäckerei</em>) order in Germany. The <em>-chen</em> suffix makes things small/cute.",
+    frequency: 1,
+    years: [2023]
+  },
+
+  // ============================================================
+  // ROUND 4: TRAVEL & TRANSPORT
+  // ============================================================
+  {
+    id: "tra-mit-dem-rad",
+    round: "travel",
+    prompt: "<span class='de'>Ich fahre mit dem Rad zur Schule.</span>",
+    hint: "How a student gets to school, 2023 + 2024",
+    options: ["I walk to school", "I cycle to school", "I take the bus", "I take the train"],
+    answer: 1,
+    transcript: "<strong>Ich fahre jeden Tag mit dem Rad zur Schule.</strong>",
+    note: "<strong>mit dem Rad</strong> = by bike. <em>Rad</em> is short for <em>Fahrrad</em>. Other options: <em>zu Fuß</em> (on foot), <em>mit dem Bus</em> (by bus), <em>mit dem Zug</em> (by train).",
+    frequency: 2,
+    years: [2023, 2024]
+  },
+  {
+    id: "tra-zu-fuss",
+    round: "travel",
+    prompt: "What does <span class='de'>zu Fuß</span> mean?",
+    hint: "How Student 1 gets to school, 2023",
+    options: ["By bus", "By bike", "On foot", "By car"],
+    answer: 2,
+    transcript: "<strong>Ich gehe jeden Tag zu Fuß zur Schule.</strong>",
+    note: "<strong>zu Fuß</strong> = on foot. <em>Fuß</em> = foot. Useful expression: <em>zu Fuß gehen</em> = to walk.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "tra-mit-dem-zug",
+    round: "travel",
+    prompt: "<span class='de'>mit dem Zug</span> — how is this person travelling?",
+    hint: "Multiple papers mention this",
+    options: ["By car", "By plane", "By train", "By boat"],
+    answer: 2,
+    transcript: "<strong>Wir treffen uns am Kölner Hauptbahnhof und nehmen den Zug.</strong>",
+    note: "<strong>mit dem Zug</strong> = by train. <em>Zug</em> = train. The 2022 paper featured the 'Quer-durchs-Land-Ticket' for travelling by train all over Germany.",
+    frequency: 2,
+    years: [2022, 2023]
+  },
+  {
+    id: "tra-hauptbahnhof",
+    round: "travel",
+    prompt: "What is the <span class='de'>Hauptbahnhof</span>?",
+    hint: "Meeting place in 2022 (Frankfurt) and 2024 (Köln)",
+    options: ["The main square", "The airport", "The main train station", "The bus depot"],
+    answer: 2,
+    transcript: "Wir treffen uns am <strong>Kölner Hauptbahnhof</strong> und nehmen den Zug.",
+    note: "<strong>Hauptbahnhof</strong> = main train station (literally 'main rail-yard'). Often abbreviated to <em>Hbf</em> on signs. <em>Haupt-</em> = main.",
+    frequency: 2,
+    years: [2022, 2024]
+  },
+  {
+    id: "tra-flughafen",
+    round: "travel",
+    prompt: "What is the <span class='de'>Flughafen</span>?",
+    hint: "Where Nathalie is stuck, 2022",
+    options: ["The harbour", "The airport", "The station", "The hotel"],
+    answer: 1,
+    transcript: "Wir sind nämlich noch <strong>am Flughafen in Frankfurt</strong>.",
+    note: "<strong>Flughafen</strong> = airport. <em>Flug</em> = flight + <em>Hafen</em> = harbour. <em>Flugzeug</em> = aeroplane.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "tra-jugendherberge",
+    round: "travel",
+    prompt: "What is a <span class='de'>Jugendherberge</span>?",
+    hint: "Mentioned in 2022 (asking directions) and 2023 (booking)",
+    options: ["A hotel", "A youth hostel", "A campsite", "A guesthouse"],
+    answer: 1,
+    transcript: "Entschuldige bitte, <strong>ich will zur Jugendherberge</strong>.",
+    note: "<strong>Jugendherberge</strong> = youth hostel. <em>Jugend</em> = youth + <em>Herberge</em> = lodging. Cheap accommodation popular with school groups.",
+    frequency: 2,
+    years: [2022, 2023]
+  },
+  {
+    id: "tra-klassenfahrt",
+    round: "travel",
+    prompt: "What is a <span class='de'>Klassenfahrt</span>?",
+    hint: "Mentioned in multiple papers",
+    options: ["A class test", "A class trip", "A class photo", "A class register"],
+    answer: 1,
+    transcript: "Ist ja auch unsere <strong>Klassenfahrt</strong>. Bald sind wir am Hauptbahnhof.",
+    note: "<strong>Klassenfahrt</strong> = class trip. <em>Klasse</em> + <em>Fahrt</em> (journey). <em>Schulausflug</em> is a one-day school outing.",
+    frequency: 2,
+    years: [2022, 2023]
+  },
+  {
+    id: "tra-urlaub",
+    round: "travel",
+    prompt: "What does <span class='de'>auf Urlaub</span> mean?",
+    hint: "Chloe in Munich, 2023",
+    options: ["At work", "At school", "On holiday", "On a business trip"],
+    answer: 2,
+    transcript: "Ich bin gerade <strong>auf Urlaub</strong>.",
+    note: "<strong>Urlaub</strong> = holiday/vacation. <em>auf Urlaub</em> = on holiday. <em>Ferien</em> is similar but more often used for school holidays.",
+    frequency: 1,
+    years: [2023]
+  },
+
+  // ============================================================
+  // ROUND 5: PHONE CALLS & ANNOUNCEMENTS
+  // ============================================================
+  {
+    id: "pho-hier-spricht",
+    round: "phone",
+    prompt: "<span class='de'>Hier spricht Pascal Went.</span>",
+    hint: "Phone call to a doctor, 2024",
+    options: ["This is Pascal speaking", "I'm looking for Pascal", "Where is Pascal?", "Pascal isn't here"],
+    answer: 0,
+    transcript: "Guten Tag, <strong>hier spricht Pascal Went</strong>.",
+    note: "<strong>Hier spricht...</strong> = This is ... speaking. Standard German phone greeting. More formal than <em>Hier ist...</em>",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "pho-handynummer",
+    round: "phone",
+    prompt: "What is a <span class='de'>Handynummer</span>?",
+    hint: "Asked for in 2023 + 2024 papers",
+    options: ["A home address", "A mobile number", "A landline number", "An email"],
+    answer: 1,
+    transcript: "Meine <strong>Handynummer</strong> ist die 0171 27 94 630.",
+    note: "<strong>Handynummer</strong> = mobile phone number. Remember: <em>Handy</em> in German = mobile phone (NOT 'handy' in English — that's a false friend).",
+    frequency: 2,
+    years: [2023, 2024]
+  },
+  {
+    id: "pho-absagen",
+    round: "phone",
+    prompt: "What does <span class='de'>absagen</span> mean?",
+    hint: "Pascal cancelling his doctor's appointment, 2024",
+    options: ["To confirm", "To cancel", "To postpone", "To attend"],
+    answer: 1,
+    transcript: "Aber den muss ich leider <strong>absagen</strong>.",
+    note: "<strong>absagen</strong> = to cancel. <em>ab-</em> (away) + <em>sagen</em> (to say). Useful for appointments, plans, events.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "pho-termin",
+    round: "phone",
+    prompt: "What is a <span class='de'>Termin</span>?",
+    hint: "Phone call to a doctor, 2024",
+    options: ["A holiday", "A meeting/appointment", "A timetable", "A test result"],
+    answer: 1,
+    transcript: "Ich habe morgen um 11:25 Uhr einen <strong>Termin bei Herrn Doktor Jung</strong>.",
+    note: "<strong>Termin</strong> = appointment / scheduled meeting. <em>einen Termin haben</em> = to have an appointment. <em>einen Termin machen</em> = to make an appointment.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "pho-durchsage",
+    round: "phone",
+    prompt: "What is a <span class='de'>Durchsage</span>?",
+    hint: "Announcement to class reps, 2022",
+    options: ["A speech", "A song", "An announcement", "A presentation"],
+    answer: 2,
+    transcript: "Eine wichtige <strong>Durchsage an alle Klassensprecher!</strong>",
+    note: "<strong>Durchsage</strong> = announcement (over a loudspeaker/PA). <em>durch</em> (through) + <em>sage</em> (say). Common in train stations, schools, airports.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "pho-vergessen",
+    round: "phone",
+    prompt: "What does <span class='de'>vergessen</span> mean?",
+    hint: "Why a friend cancels the gym, 2024",
+    options: ["To remember", "To forget", "To miss", "To organise"],
+    answer: 1,
+    transcript: "Ich habe total <strong>vergessen</strong>, dass meine Tante zu Besuch kommt.",
+    note: "<strong>vergessen</strong> = to forget. The past form is also <em>vergessen</em> (irregular). Opposite: <em>sich erinnern</em> = to remember.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "pho-hitzefrei",
+    round: "phone",
+    prompt: "What does <span class='de'>hitzefrei</span> mean?",
+    hint: "Heatwave announcement, 2022",
+    options: ["Free ice cream", "School closed due to heat", "Cool weather", "Heating turned off"],
+    answer: 1,
+    transcript: "Das heißt <strong>hitzefrei</strong> und unsere Schule bleibt geschlossen.",
+    note: "<strong>hitzefrei</strong> = no school due to heat (a real concept in Germany when temperatures get too high!). <em>Hitze</em> = heat + <em>-frei</em> = free from.",
+    frequency: 1,
+    years: [2022]
+  },
+
+  // ============================================================
+  // ROUND 6: FOOD & DRINK
+  // ============================================================
+  {
+    id: "foo-fruehstueck",
+    round: "food",
+    prompt: "What is <span class='de'>Frühstück</span>?",
+    hint: "Asked about in 2024 (Muttertag) + 2023 (hotel)",
+    options: ["Lunch", "Dinner", "Breakfast", "A snack"],
+    answer: 2,
+    transcript: "Ich will Mama mit einem tollen <strong>Frühstück</strong> überraschen.",
+    note: "<strong>Frühstück</strong> = breakfast. <em>früh</em> (early) + <em>Stück</em> (piece). <em>Mittagessen</em> = lunch, <em>Abendessen</em> = dinner.",
+    frequency: 2,
+    years: [2023, 2024]
+  },
+  {
+    id: "foo-suppe",
+    round: "food",
+    prompt: "What is <span class='de'>Suppe</span>?",
+    hint: "What Frau Huber orders, 2024",
+    options: ["Salad", "Soup", "Sandwich", "Steak"],
+    answer: 1,
+    transcript: "Heute habe ich Lust auf <strong>Suppe</strong>.",
+    note: "<strong>Suppe</strong> = soup. <em>Pilzsuppe</em> = mushroom soup (her favourite — wasn't available). <em>Tomatensuppe</em> = tomato soup (what she got instead).",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "foo-pilzsuppe",
+    round: "food",
+    prompt: "What is <span class='de'>Pilzsuppe</span>?",
+    hint: "Frau Huber's favourite soup, 2024",
+    options: ["Tomato soup", "Mushroom soup", "Vegetable soup", "Onion soup"],
+    answer: 1,
+    transcript: "Meine Lieblingssuppe ist <strong>Pilzsuppe</strong>.",
+    note: "<strong>Pilzsuppe</strong> = mushroom soup. <em>Pilz</em> = mushroom + <em>Suppe</em> = soup. Sadly only available <em>gestern</em> (yesterday)!",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "foo-pfannkuchen",
+    round: "food",
+    prompt: "What is a <span class='de'>Pfannkuchen</span>?",
+    hint: "Made for Muttertag breakfast, 2024",
+    options: ["A pizza", "A pancake", "A pie", "A pastry"],
+    answer: 1,
+    transcript: "Mit Orangensaft, Kaffee und einem <strong>Bananenpfannkuchen</strong>.",
+    note: "<strong>Pfannkuchen</strong> = pancake. <em>Pfanne</em> (pan) + <em>Kuchen</em> (cake). <em>Bananenpfannkuchen</em> = banana pancake.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "foo-orangensaft",
+    round: "food",
+    prompt: "What is <span class='de'>Orangensaft</span>?",
+    hint: "Muttertag breakfast drink, 2024 + 2025",
+    options: ["Apple juice", "Orange juice", "Coffee", "Champagne"],
+    answer: 1,
+    transcript: "Mit <strong>Orangensaft</strong>, Kaffee und einem Bananenpfannkuchen.",
+    note: "<strong>Orangensaft</strong> = orange juice. <em>Saft</em> = juice. <em>Apfelsaft</em> = apple juice.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "foo-eis",
+    round: "food",
+    prompt: "What is <span class='de'>Eis</span>?",
+    hint: "Praised in 2022 paper",
+    options: ["Iced tea", "Ice cream", "Cake", "Pudding"],
+    answer: 1,
+    transcript: "Das ist das beste <strong>Eis</strong> in ganz Deutschland.",
+    note: "<strong>Eis</strong> = ice / ice cream. Context tells you which. <em>Eisdiele</em> = ice cream parlour (where Viktoria worked in 2023).",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "foo-grillen",
+    round: "food",
+    prompt: "What does <span class='de'>grillen</span> mean?",
+    hint: "What Papa does at Tom's birthday, 2024",
+    options: ["To boil", "To fry", "To grill/BBQ", "To bake"],
+    answer: 2,
+    transcript: "Ich <strong>grille Fisch, Fleisch, Würstchen, Gemüse</strong>, alles was ihr wollt.",
+    note: "<strong>grillen</strong> = to grill / barbecue. <em>Grillmeister</em> = grill master. <em>Fisch</em> = fish, <em>Fleisch</em> = meat, <em>Würstchen</em> = small sausages, <em>Gemüse</em> = vegetables.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "foo-lebkuchen",
+    round: "food",
+    prompt: "What are <span class='de'>Lebkuchen</span>?",
+    hint: "Christmas market shopping, 2023",
+    options: ["Pretzels", "Gingerbread", "Sausages", "Doughnuts"],
+    answer: 1,
+    transcript: "<strong>Lebkuchen, Kinderpunsch, Pralinen, Nüsse und Stollen.</strong>",
+    note: "<strong>Lebkuchen</strong> = gingerbread. A traditional Christmas treat. <em>Stollen</em> = a German Christmas fruit-bread. <em>Pralinen</em> = chocolates. <em>Nüsse</em> = nuts.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "foo-kantine",
+    round: "food",
+    prompt: "What is the <span class='de'>Kantine</span>?",
+    hint: "Where Alban eats lunch, 2024",
+    options: ["A canteen", "A restaurant", "A café", "A kitchen"],
+    answer: 0,
+    transcript: "Ich esse mit meinen Schulfreunden in der <strong>Kantine</strong> zum Mittag.",
+    note: "<strong>Kantine</strong> = canteen (school or work cafeteria). <em>zum Mittag</em> = for lunch. Same word in English — easy to remember.",
+    frequency: 2,
+    years: [2023, 2024]
+  },
+
+  // ============================================================
+  // ROUND 7: FAMILY & PEOPLE
+  // ============================================================
+  {
+    id: "fam-oma",
+    round: "family",
+    prompt: "Who is your <span class='de'>Oma</span>?",
+    hint: "Alban visits on Saturdays, 2024",
+    options: ["Your mum", "Your grandma", "Your aunt", "Your sister"],
+    answer: 1,
+    transcript: "Samstags besuche ich meine <strong>Oma</strong>.",
+    note: "<strong>Oma</strong> = grandma (informal). <em>Großmutter</em> is the formal term. <em>Opa</em> = grandad, <em>Großvater</em> formal.",
+    frequency: 2,
+    years: [2022, 2024]
+  },
+  {
+    id: "fam-opa",
+    round: "family",
+    prompt: "Who is your <span class='de'>Opa</span>?",
+    hint: "Nathalie's phone call, 2022",
+    options: ["Your dad", "Your uncle", "Your grandad", "Your brother"],
+    answer: 2,
+    transcript: "Hallo <strong>Opa</strong>! Na, wie ist das Wetter in Kroatien?",
+    note: "<strong>Opa</strong> = grandad. <em>Oma</em> = grandma. Both informal, used by family.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "fam-tante",
+    round: "family",
+    prompt: "Who is your <span class='de'>Tante</span>?",
+    hint: "Visiting from South Africa, 2024",
+    options: ["Your aunt", "Your sister", "Your daughter", "Your cousin"],
+    answer: 0,
+    transcript: "Heute Abend um acht Uhr meine <strong>Tante aus Südafrika</strong> zu Besuch kommt.",
+    note: "<strong>Tante</strong> = aunt. <em>Onkel</em> = uncle. <em>Cousin/Cousine</em> = male/female cousin.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "fam-onkel",
+    round: "family",
+    prompt: "Who is your <span class='de'>Onkel</span>?",
+    hint: "Kai becomes one when his sister has a baby, 2024",
+    options: ["Your dad", "Your uncle", "Your cousin", "Your grandad"],
+    answer: 1,
+    transcript: "Dann werde ich ja <strong>Onkel</strong>.",
+    note: "<strong>Onkel</strong> = uncle. <em>Tante</em> = aunt. <em>werde ich Onkel</em> = I will become an uncle.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "fam-bruder",
+    round: "family",
+    prompt: "Who is your <span class='de'>Bruder</span>?",
+    hint: "Tom is Dahlia's, 2024",
+    options: ["Your brother", "Your father", "Your friend", "Your son"],
+    answer: 0,
+    transcript: "Dein <strong>Bruder</strong> wird seine Geburtstagsüberraschung toll finden.",
+    note: "<strong>Bruder</strong> = brother. <em>Schwester</em> = sister. <em>Geschwister</em> = siblings (always plural).",
+    frequency: 2,
+    years: [2023, 2024]
+  },
+  {
+    id: "fam-schwester",
+    round: "family",
+    prompt: "Who is your <span class='de'>Schwester</span>?",
+    hint: "Rebekka in Kai's family, 2024",
+    options: ["Your aunt", "Your sister", "Your cousin", "Your daughter"],
+    answer: 1,
+    transcript: "Deine <strong>Schwester</strong> Rebekka hat mich heute Nachmittag angerufen.",
+    note: "<strong>Schwester</strong> = sister. <em>Krankenschwester</em> = nurse (literally 'sick-sister'). <em>Bruder</em> = brother.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "fam-geburtstag",
+    round: "family",
+    prompt: "What is a <span class='de'>Geburtstag</span>?",
+    hint: "Birthdays mentioned in multiple papers",
+    options: ["A wedding", "A funeral", "A birthday", "A Christmas"],
+    answer: 2,
+    transcript: "Lass uns Toms <strong>Geburtstagsparty</strong> planen.",
+    note: "<strong>Geburtstag</strong> = birthday. <em>Geburt</em> (birth) + <em>Tag</em> (day). <em>Herzlichen Glückwunsch zum Geburtstag!</em> = Happy birthday!",
+    frequency: 3,
+    years: [2022, 2023, 2024]
+  },
+  {
+    id: "fam-herzlichen-glueckwunsch",
+    round: "family",
+    prompt: "<span class='de'>Herzlichen Glückwunsch!</span>",
+    hint: "Greeting in Dialogue C, 2022",
+    options: ["Welcome!", "Goodbye!", "Congratulations!", "Sorry!"],
+    answer: 2,
+    transcript: "<strong>Herzlichen Glückwunsch zum Geburtstag</strong> Melanie.",
+    note: "<strong>Herzlichen Glückwunsch!</strong> = Congratulations! Literally 'heartfelt good-wishes'. Used for birthdays, exams, weddings.",
+    frequency: 1,
+    years: [2022]
+  },
+
+  // ============================================================
+  // ROUND 8: WEATHER & SEASONS
+  // ============================================================
+  {
+    id: "wet-wetter",
+    round: "weather",
+    prompt: "What is <span class='de'>das Wetter</span>?",
+    hint: "Discussed in 2022 paper multiple times",
+    options: ["The week", "The weekend", "The weather", "The wind"],
+    answer: 2,
+    transcript: "Mein Handy zeigt für Basel supertolles <strong>Wetter</strong> an.",
+    note: "<strong>Wetter</strong> = weather. <em>bei kaltem Wetter</em> = in cold weather. <em>Wettervorhersage</em> = weather forecast.",
+    frequency: 2,
+    years: [2022, 2023]
+  },
+  {
+    id: "wet-hitzewelle",
+    round: "weather",
+    prompt: "What is a <span class='de'>Hitzewelle</span>?",
+    hint: "Caused hitzefrei in 2022",
+    options: ["A snowstorm", "A heatwave", "A flood", "A storm"],
+    answer: 1,
+    transcript: "Am Donnerstag und Freitag gibt es eine <strong>Hitzewelle</strong> mit Rekordtemperaturen von 41 Grad.",
+    note: "<strong>Hitzewelle</strong> = heatwave. <em>Hitze</em> = heat + <em>Welle</em> = wave. 41°C is extreme!",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "wet-kalt",
+    round: "weather",
+    prompt: "What does <span class='de'>kalt</span> mean?",
+    hint: "Winters in Germany, 2022",
+    options: ["Hot", "Warm", "Cool", "Cold"],
+    answer: 3,
+    transcript: "Im Winter kann es in Deutschland sehr <strong>kalt</strong> werden, minus 15 Grad oder noch kälter.",
+    note: "<strong>kalt</strong> = cold. <em>kühl</em> = cool. <em>warm</em> = warm. <em>heiß</em> = hot. <em>kälter</em> = colder.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "wet-schnee",
+    round: "weather",
+    prompt: "What is <span class='de'>Schnee</span>?",
+    hint: "Winter in Germany, 2022",
+    options: ["Rain", "Snow", "Wind", "Fog"],
+    answer: 1,
+    transcript: "Oft gibt es viel <strong>Schnee</strong>.",
+    note: "<strong>Schnee</strong> = snow. <em>schneien</em> = to snow. <em>Es schneit</em> = it's snowing. <em>Schneemann</em> = snowman.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "wet-sonne",
+    round: "weather",
+    prompt: "What is <span class='de'>die Sonne</span>?",
+    hint: "Beach in Croatia, 2022",
+    options: ["The sky", "The sun", "The sand", "The sea"],
+    answer: 1,
+    transcript: "Liegt ihr schon am Strand in der <strong>Sonne</strong>?",
+    note: "<strong>Sonne</strong> = sun. <em>Sonnencreme</em> = sunscreen, <em>Sonnenbrille</em> = sunglasses, <em>sonnig</em> = sunny.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "wet-grad",
+    round: "weather",
+    prompt: "What does <span class='de'>Grad</span> mean?",
+    hint: "Used for temperatures every year",
+    options: ["Hour", "Degree", "Meter", "Minute"],
+    answer: 1,
+    transcript: "Rekordtemperaturen von 41 <strong>Grad</strong> im Schatten.",
+    note: "<strong>Grad</strong> = degree(s). <em>im Schatten</em> = in the shade. Germans use Celsius.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "wet-winter",
+    round: "weather",
+    prompt: "What is <span class='de'>Winter</span>?",
+    hint: "Ski-themed listening, 2022",
+    options: ["Spring", "Summer", "Autumn", "Winter"],
+    answer: 3,
+    transcript: "Im <strong>Winter</strong> kann es in Deutschland sehr kalt werden.",
+    note: "<strong>Winter</strong> = winter (same as English!). The four seasons: <em>Frühling</em> (spring), <em>Sommer</em> (summer), <em>Herbst</em> (autumn), <em>Winter</em>.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "wet-fruehling",
+    round: "weather",
+    prompt: "What season is <span class='de'>Frühling</span>?",
+    hint: "When Rebekka is having her baby, 2024",
+    options: ["Spring", "Summer", "Autumn", "Winter"],
+    answer: 0,
+    transcript: "Deine Schwester Rebekka und ihr Mann bekommen <strong>im Frühling</strong> ihr erstes Baby.",
+    note: "<strong>Frühling</strong> = spring. From <em>früh</em> = early. The seasons: <em>Frühling, Sommer, Herbst, Winter</em>.",
+    frequency: 1,
+    years: [2024]
+  },
+
+  // ============================================================
+  // ROUND 9: PETS & ANIMALS
+  // ============================================================
+  {
+    id: "ani-kaninchen",
+    round: "animals",
+    prompt: "What is a <span class='de'>Kaninchen</span>?",
+    hint: "Pet description, 2022",
+    options: ["A guinea pig", "A rabbit", "A hamster", "A mouse"],
+    answer: 1,
+    transcript: "Meine zwei <strong>Kaninchen</strong> sind total lieb und kuschelig.",
+    note: "<strong>Kaninchen</strong> = rabbit. <em>kuschelig</em> = cuddly. <em>Fell</em> = fur. <em>Hase</em> = hare (a slightly different animal).",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "ani-katze",
+    round: "animals",
+    prompt: "What is a <span class='de'>Katze</span>?",
+    hint: "Pet description, 2022",
+    options: ["A dog", "A cat", "A goldfish", "A bird"],
+    answer: 1,
+    transcript: "Meine süße <strong>Katze</strong> habe ich schon fünf Jahre.",
+    note: "<strong>Katze</strong> = cat. <em>süß</em> = sweet/cute. Used in many compound words: <em>Katzenhaare</em> (cat hairs, in 2025 reading paper).",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "ani-hund",
+    round: "animals",
+    prompt: "What is a <span class='de'>Hund</span>?",
+    hint: "Mentioned in 2022 + 2024 papers",
+    options: ["A cat", "A horse", "A dog", "A rabbit"],
+    answer: 2,
+    transcript: "Ich habe einen lieben <strong>Hund</strong>. Er ist immer bei mir.",
+    note: "<strong>Hund</strong> = dog. <em>Hundeleine</em> = dog lead (2025 reading paper). The speaker in 2022 had a guide dog (<em>Blindenhund</em>).",
+    frequency: 2,
+    years: [2022, 2024]
+  },
+  {
+    id: "ani-tiere",
+    round: "animals",
+    prompt: "What are <span class='de'>Tiere</span>?",
+    hint: "School project name, 2024",
+    options: ["Trees", "Plants", "Animals", "Birds"],
+    answer: 2,
+    transcript: "Das neue Schulprojekt <strong>'Ein Herz für Tiere'</strong>.",
+    note: "<strong>Tiere</strong> = animals (plural). <em>Tier</em> singular. <em>Tierarzt</em> = vet (in 2023 reading paper).",
+    frequency: 1,
+    years: [2024]
+  },
+
+  // ============================================================
+  // ROUND 10: SCHOOL ROUTINE
+  // ============================================================
+  {
+    id: "sch-stunden",
+    round: "school",
+    prompt: "What does <span class='de'>sechs Stunden Unterricht</span> mean?",
+    hint: "Alban's school day, 2024",
+    options: ["6 hours of class", "6 minutes of class", "6 days of class", "6 different classes"],
+    answer: 0,
+    transcript: "In der Schule habe ich <strong>sechs Stunden Unterricht</strong> pro Tag.",
+    note: "<strong>Stunden</strong> = hours / lessons. <em>Unterricht</em> = class / lessons (uncountable). <em>pro Tag</em> = per day.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "sch-klassenarbeit",
+    round: "school",
+    prompt: "What is a <span class='de'>Klassenarbeit</span>?",
+    hint: "Reason to skip an appointment, 2024 + 2022",
+    options: ["A class trip", "A class test", "A class photo", "A class project"],
+    answer: 1,
+    transcript: "Ich muss morgen eine <strong>Klassenarbeit in Mathe</strong> schreiben.",
+    note: "<strong>Klassenarbeit</strong> = class test. <em>Klasse</em> + <em>Arbeit</em> (work/test). <em>Mathe</em> = Maths (short for <em>Mathematik</em>).",
+    frequency: 2,
+    years: [2022, 2024]
+  },
+  {
+    id: "sch-austauschschueler",
+    round: "school",
+    prompt: "What are <span class='de'>Austauschschüler</span>?",
+    hint: "Visitors from Ireland, 2024",
+    options: ["Exam students", "Exchange students", "Part-time students", "New students"],
+    answer: 1,
+    transcript: "Im nächsten Monat kommen zwölf <strong>Austauschschüler aus Irland</strong>.",
+    note: "<strong>Austauschschüler</strong> = exchange students. <em>Austausch</em> = exchange + <em>Schüler</em> = pupils.",
+    frequency: 2,
+    years: [2022, 2024]
+  },
+  {
+    id: "sch-schulhof",
+    round: "school",
+    prompt: "What is the <span class='de'>Schulhof</span>?",
+    hint: "Where the clothes market happens, 2024",
+    options: ["The schoolyard", "The school hall", "The school office", "The school gym"],
+    answer: 0,
+    transcript: "Auf dem <strong>Schulhof</strong> findet ein Kleidermarkt statt.",
+    note: "<strong>Schulhof</strong> = schoolyard. <em>Schule</em> + <em>Hof</em> (yard). Also where Jenny got hit by Anton's ball in the 2024 reading paper.",
+    frequency: 1,
+    years: [2024]
+  },
+  {
+    id: "sch-hausaufgaben",
+    round: "school",
+    prompt: "What are <span class='de'>Hausaufgaben</span>?",
+    hint: "What Student 1 does after school, 2023",
+    options: ["Housework", "Homework", "House plans", "Holiday tasks"],
+    answer: 1,
+    transcript: "Ich mache natürlich auch meine <strong>Hausaufgaben</strong>.",
+    note: "<strong>Hausaufgaben</strong> = homework (literally 'house-tasks'). Always plural in German.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "sch-grosse-pause",
+    round: "school",
+    prompt: "What is the <span class='de'>große Pause</span>?",
+    hint: "When the class reps meet, 2022",
+    options: ["The first lesson", "The big break", "The lunch hour", "The school assembly"],
+    answer: 1,
+    transcript: "Kommt bitte nach der <strong>großen Pause</strong> in die Cafeteria.",
+    note: "<strong>große Pause</strong> = big break (the longer mid-morning break). <em>kleine Pause</em> = short break. <em>Pause</em> = break.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "sch-klassensprecher",
+    round: "school",
+    prompt: "Who are <span class='de'>Klassensprecher</span>?",
+    hint: "Called to a meeting, 2022",
+    options: ["The teachers", "The class representatives", "The new students", "The exchange students"],
+    answer: 1,
+    transcript: "Eine wichtige Durchsage an alle <strong>Klassensprecher</strong>!",
+    note: "<strong>Klassensprecher</strong> = class representative / class spokesperson. <em>Klasse</em> + <em>Sprecher</em> (speaker).",
+    frequency: 1,
+    years: [2022]
+  },
+
+  // ============================================================
+  // ROUND 11: HEALTH & FEELINGS
+  // ============================================================
+  {
+    id: "hea-kopfschmerzen",
+    round: "health",
+    prompt: "What are <span class='de'>Kopfschmerzen</span>?",
+    hint: "Stefan's symptoms, 2023",
+    options: ["A headache", "A stomach ache", "A sore throat", "Backache"],
+    answer: 0,
+    transcript: "Ich habe starke <strong>Kopfschmerzen</strong>, Ohrenschmerzen und Schnupfen.",
+    note: "<strong>Kopfschmerzen</strong> = headache. <em>Kopf</em> = head + <em>Schmerzen</em> = pains. Pattern: any body part + <em>-schmerzen</em> = ache there.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "hea-ohrenschmerzen",
+    round: "health",
+    prompt: "What are <span class='de'>Ohrenschmerzen</span>?",
+    hint: "Stefan's symptoms, 2023",
+    options: ["Toothache", "Earache", "Backache", "Headache"],
+    answer: 1,
+    transcript: "Ich habe Kopfschmerzen, <strong>Ohrenschmerzen</strong> und Schnupfen.",
+    note: "<strong>Ohrenschmerzen</strong> = earache. <em>Ohr</em> = ear (plural <em>Ohren</em>). Compare to <em>Magenschmerzen</em> (stomach ache, 2024 reading paper).",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "hea-schnupfen",
+    round: "health",
+    prompt: "What is a <span class='de'>Schnupfen</span>?",
+    hint: "Stefan's symptoms, 2023",
+    options: ["A cough", "A fever", "A cold/runny nose", "A rash"],
+    answer: 2,
+    transcript: "Ich habe Kopfschmerzen, Ohrenschmerzen und <strong>Schnupfen</strong>.",
+    note: "<strong>Schnupfen</strong> = a cold / runny nose. Not the same as <em>Husten</em> (cough) or <em>Fieber</em> (fever).",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "hea-besserung",
+    round: "health",
+    prompt: "<span class='de'>Gute Besserung!</span> — when do you say this?",
+    hint: "Monika to Stefan, 2023",
+    options: ["Goodbye", "Get well soon", "Good luck", "Welcome"],
+    answer: 1,
+    transcript: "Ich drücke Dir die Daumen. <strong>Gute Besserung!</strong>",
+    note: "<strong>Gute Besserung!</strong> = Get well soon. <em>Besserung</em> = recovery. <em>Ich drücke dir die Daumen</em> = I'll cross my fingers (literally 'press the thumbs').",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "hea-mir-gehts",
+    round: "health",
+    prompt: "<span class='de'>Mir geht's nicht so gut.</span>",
+    hint: "Stefan when Monika calls, 2023",
+    options: ["I'm fine", "I'm not feeling so good", "I'm leaving", "I'm busy"],
+    answer: 1,
+    transcript: "<strong>Mir geht's leider nicht so gut.</strong>",
+    note: "<strong>Mir geht's nicht so gut</strong> = I'm not feeling so good. <em>leider</em> = unfortunately. Standard reply if you're unwell.",
+    frequency: 1,
+    years: [2023]
+  },
+
+  // ============================================================
+  // ROUND 12: LANGUAGES & EXCHANGE
+  // ============================================================
+  {
+    id: "lan-seit",
+    round: "languages",
+    prompt: "<span class='de'>Ich lerne seit zwei Jahren Irisch.</span>",
+    hint: "Multiple students introduce themselves this way, 2022 + 2023",
+    options: ["I learned Irish two years ago", "I want to learn Irish in 2 years", "I've been learning Irish for 2 years", "I taught Irish for 2 years"],
+    answer: 2,
+    transcript: "<strong>Ich lerne seit zwei Jahren Irisch.</strong>",
+    note: "<strong>seit + dative</strong> = for / since. In German, use PRESENT tense for actions still ongoing: <em>Ich lerne seit X Jahren</em> = I've been learning for X years. NOT past tense.",
+    frequency: 2,
+    years: [2022, 2023]
+  },
+  {
+    id: "lan-fremdsprache",
+    round: "languages",
+    prompt: "What is a <span class='de'>Fremdsprache</span>?",
+    hint: "Pavo introduces his, 2022",
+    options: ["A native language", "A foreign language", "A sign language", "A dead language"],
+    answer: 1,
+    transcript: "Meine <strong>Fremdsprache</strong> ist Englisch.",
+    note: "<strong>Fremdsprache</strong> = foreign language. <em>fremd</em> = foreign / strange + <em>Sprache</em> = language.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "lan-spanisch",
+    round: "languages",
+    prompt: "What language is <span class='de'>Spanisch</span>?",
+    hint: "Greta's language, 2022",
+    options: ["Italian", "Spanish", "Portuguese", "French"],
+    answer: 1,
+    transcript: "Ich lerne seit drei Jahren <strong>Spanisch</strong>.",
+    note: "<strong>Spanisch</strong> = Spanish (the language). <em>Spanien</em> = Spain (the country). <em>ein Spanier / eine Spanierin</em> = a Spaniard (m/f).",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "lan-irisch",
+    round: "languages",
+    prompt: "What language is <span class='de'>Irisch</span>?",
+    hint: "Jörg learns this at school, 2022",
+    options: ["English", "Welsh", "Irish (Gaeilge)", "Scottish Gaelic"],
+    answer: 2,
+    transcript: "<strong>Ich lerne Irisch in der Schule.</strong>",
+    note: "<strong>Irisch</strong> = Irish (the Irish/Gaelic language). <em>Irland</em> = Ireland. <em>ein Ire / eine Irin</em> = an Irish man / woman.",
+    frequency: 1,
+    years: [2022]
+  },
+  {
+    id: "lan-deutsch",
+    round: "languages",
+    prompt: "What does <span class='de'>Ich lerne seit fünf Jahren Deutsch</span> mean?",
+    hint: "Chloe from Waterford, 2023",
+    options: ["I taught German for 5 years", "I've been learning German for 5 years", "I learned German 5 years ago", "I will learn German in 5 years"],
+    answer: 1,
+    transcript: "<strong>Ich lerne seit fünf Jahren Deutsch.</strong> Ich liebe die Sprache!",
+    note: "<strong>Ich lerne seit fünf Jahren</strong> = I've been learning for 5 years (and still am). <em>Sprache</em> = language. Useful sentence for a JC oral exam.",
+    frequency: 1,
+    years: [2023]
+  },
+  {
+    id: "lan-leicht",
+    round: "languages",
+    prompt: "<span class='de'>Deutsch ist ziemlich leicht.</span>",
+    hint: "Chloe's opinion on German, 2023",
+    options: ["German is quite hard", "German is quite easy", "German is quite useful", "German is quite slow"],
+    answer: 1,
+    transcript: "Deutsch ist <strong>ziemlich leicht</strong>.",
+    note: "<strong>leicht</strong> = easy / light. <em>schwer / schwierig</em> = difficult. <em>ziemlich</em> = quite / fairly.",
+    frequency: 1,
+    years: [2023]
+  }
+];
+
+// ============================================================
+// Round metadata
+// ============================================================
+const ROUNDS = [
+  { id: "numbers",   title: "Numbers, Prices & Times", icon: "🔢" },
+  { id: "dates",     title: "Dates, Days & Months",    icon: "📅" },
+  { id: "shopping",  title: "Shopping & Service",      icon: "🛍️" },
+  { id: "travel",    title: "Travel & Transport",      icon: "🚆" },
+  { id: "phone",     title: "Phone Calls & Announcements", icon: "📞" },
+  { id: "food",      title: "Food & Drink",            icon: "🍽️" },
+  { id: "family",    title: "Family & People",         icon: "👨‍👩‍👧" },
+  { id: "weather",   title: "Weather & Seasons",       icon: "🌤️" },
+  { id: "animals",   title: "Pets & Animals",          icon: "🐶" },
+  { id: "school",    title: "School Routine",          icon: "🏫" },
+  { id: "health",    title: "Health & Feelings",       icon: "🤒" },
+  { id: "languages", title: "Languages & Exchange",    icon: "🌍" }
+];
+
+// ============================================================
+// PERSISTENCE
+// ============================================================
+const STORAGE_KEY = 'g360_jc_german_aural_progress_v1';
+
+const defaultProgress = {
+  words: {},
+  sessions: 0,
+  totalCorrect: 0,
+  totalAnswered: 0,
+  lastSessionDate: null,
+  dayStreak: 0
+};
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return { ...defaultProgress };
+    return { ...defaultProgress, ...JSON.parse(raw) };
+  } catch (e) { return { ...defaultProgress }; }
+}
+function saveProgress() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); } catch (e) {}
+}
+function recordAnswer(qId, isCorrect) {
+  if (!progress.words[qId]) {
+    progress.words[qId] = { seen: 0, correct: 0, wrong: 0, streak: 0, lastSeen: null };
+  }
+  const w = progress.words[qId];
+  const wasMastered = w.streak >= 3;
+  w.seen++;
+  w.lastSeen = Date.now();
+  if (isCorrect) { w.correct++; w.streak++; }
+  else { w.wrong++; w.streak = 0; }
+  const isMasteredNow = w.streak >= 3 && !wasMastered;
+  progress.totalAnswered++;
+  if (isCorrect) progress.totalCorrect++;
+  saveProgress();
+  return { wordStats: w, justMastered: isMasteredNow };
+}
+function bumpSessionStreak() {
+  const today = new Date().toDateString();
+  if (progress.lastSessionDate === today) return;
+  if (progress.lastSessionDate) {
+    const y = new Date(); y.setDate(y.getDate() - 1);
+    progress.dayStreak = progress.lastSessionDate === y.toDateString() ? progress.dayStreak + 1 : 1;
+  } else {
+    progress.dayStreak = 1;
+  }
+  progress.lastSessionDate = today;
+  progress.sessions++;
+  saveProgress();
+}
+function getWordStatus(qId) {
+  const w = progress.words[qId];
+  if (!w || w.seen === 0) return 'new';
+  if (w.streak >= 3) return 'mastered';
+  if (w.wrong > 0 && w.streak < 3) return 'weak';
+  return 'learning';
+}
+function resetProgress() {
+  if (!confirm('Reset all your aural progress on this device? This cannot be undone.')) return;
+  progress = { ...defaultProgress, words: {} };
+  saveProgress();
+  refreshDashboard();
+  buildRoundsList();
+  showToast('Progress reset.');
+}
+
+// ============================================================
+// State
+// ============================================================
+let progress = loadProgress();
+let state = { questions: [], index: 0, score: 0, answered: [], mode: "all" };
+
+// ============================================================
+// DOM
+// ============================================================
+const $ = (id) => document.getElementById(id);
+const startScreen = $('start-screen');
+const quizScreen = $('quiz-screen');
+const resultsScreen = $('results-screen');
+const toastEl = $('toast');
+
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(window._t);
+  window._t = setTimeout(() => toastEl.classList.remove('show'), 2500);
+}
+
+function freqClass(f) { return f >= 3 ? 'high' : f === 2 ? 'med' : 'low'; }
+function freqLabel(f) {
+  if (f === 3) return 'All 3 years';
+  if (f === 2) return '2 of 3 years';
+  return '1 of 3 years';
+}
+function starsHtml(f) {
+  return `<span class="stars">${'★'.repeat(f)}</span><span class="stars-gray">${'★'.repeat(3 - f)}</span>`;
+}
+function scrollTop() { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }
+function getRoundTitle(rid) { const r = ROUNDS.find(r => r.id === rid); return r ? r.title : rid; }
+function getRoundIcon(rid) { const r = ROUNDS.find(r => r.id === rid); return r ? r.icon : '🎧'; }
+function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+// ============================================================
+// Dashboard
+// ============================================================
+function refreshDashboard() {
+  const total = ALL_QUESTIONS.length;
+  let mastered = 0, weak = 0, seen = 0;
+  ALL_QUESTIONS.forEach(q => {
+    const s = getWordStatus(q.id);
+    if (s === 'mastered') mastered++;
+    else if (s === 'weak') weak++;
+    if (s !== 'new') seen++;
+  });
+  $('stat-mastered').textContent = mastered;
+  $('stat-weak').textContent = weak;
+  $('stat-seen').textContent = `${seen}/${total}`;
+  $('stat-streak').textContent = progress.dayStreak;
+  $('stat-mastered-bar').style.width = ((mastered / total) * 100) + '%';
+  $('stat-accuracy').textContent = progress.totalAnswered > 0
+    ? Math.round((progress.totalCorrect / progress.totalAnswered) * 100) + '%'
+    : '—';
+  $('weak-count').textContent = `${weak} word${weak !== 1 ? 's' : ''}`;
+  $('drill-weak').disabled = weak === 0;
+}
+
+function buildSmartDrill(limit = 20) {
+  const weighted = ALL_QUESTIONS.map(q => {
+    const w = progress.words[q.id] || { seen: 0, correct: 0, wrong: 0, streak: 0 };
+    const s = getWordStatus(q.id);
+    let weight;
+    if (s === 'weak') weight = q.frequency * 4 + (w.wrong - w.correct) * 2 + 10;
+    else if (s === 'new') weight = q.frequency * 2 + 5;
+    else if (s === 'learning') weight = q.frequency * 1.5 + 2;
+    else weight = q.frequency * 0.3;
+    return { q, weight: Math.max(weight, 0.1) };
+  });
+  const selected = [];
+  const pool = [...weighted];
+  while (selected.length < limit && pool.length > 0) {
+    const total = pool.reduce((s, p) => s + p.weight, 0);
+    let r = Math.random() * total;
+    let idx = 0;
+    for (let i = 0; i < pool.length; i++) { r -= pool[i].weight; if (r <= 0) { idx = i; break; } }
+    selected.push(pool[idx].q);
+    pool.splice(idx, 1);
+  }
+  return selected;
+}
+
+// ============================================================
+// Topic picker
+// ============================================================
+function buildRoundsList() {
+  const list = $('rounds-list');
+  list.innerHTML = '';
+  ROUNDS.forEach((round, i) => {
+    const qs = ALL_QUESTIONS.filter(q => q.round === round.id);
+    if (qs.length === 0) return;
+    const mastered = qs.filter(q => getWordStatus(q.id) === 'mastered').length;
+    const masteryPct = (mastered / qs.length) * 100;
+    const avgFreq = Math.round(qs.reduce((s, q) => s + q.frequency, 0) / qs.length);
+
+    const btn = document.createElement('button');
+    btn.className = 'round-card';
+    btn.innerHTML = `
+      <div class="round-card-head">
+        <span class="round-card-num">${String(i + 1).padStart(2, '0')}</span>
+        <span class="round-card-title">${round.icon} ${round.title}</span>
+      </div>
+      <div class="round-card-meta">${starsHtml(avgFreq)} · ${qs.length} questions</div>
+      <div class="round-mastery">
+        <span>${mastered}/${qs.length}</span>
+        <div class="mastery-bar"><div class="mastery-fill" style="width:${masteryPct}%"></div></div>
+      </div>
+    `;
+    btn.addEventListener('click', () => startQuiz(round.id));
+    list.appendChild(btn);
+  });
+}
+
+// ============================================================
+// Flow
+// ============================================================
+$('start-btn').addEventListener('click', () => startQuiz('all'));
+$('drill-smart').addEventListener('click', () => startQuiz('smart'));
+$('drill-weak').addEventListener('click', () => startQuiz('weak'));
+$('drill-priority').addEventListener('click', () => startQuiz('priority'));
+$('reset-progress-btn').addEventListener('click', resetProgress);
+$('next-btn').addEventListener('click', nextQuestion);
+$('skip-btn').addEventListener('click', skipQuestion);
+$('back-to-topics').addEventListener('click', goToStart);
+
+function goToStart() {
+  startScreen.classList.remove('hidden');
+  quizScreen.classList.add('hidden');
+  resultsScreen.classList.add('hidden');
+  refreshDashboard();
+  buildRoundsList();
+  scrollTop();
+}
+
+function startQuiz(mode) {
+  let qs = [];
+  if (mode === 'all') qs = shuffle([...ALL_QUESTIONS]);
+  else if (mode === 'priority') qs = shuffle(ALL_QUESTIONS.filter(q => q.frequency >= 2));
+  else if (mode === 'smart') qs = buildSmartDrill(20);
+  else if (mode === 'weak') qs = shuffle(ALL_QUESTIONS.filter(q => getWordStatus(q.id) === 'weak'));
+  else qs = shuffle(ALL_QUESTIONS.filter(q => q.round === mode));
+
+  if (qs.length === 0) { showToast('No questions available for this mode.'); return; }
+  bumpSessionStreak();
+  state = { questions: qs, index: 0, score: 0, answered: [], mode };
+  startScreen.classList.add('hidden');
+  resultsScreen.classList.add('hidden');
+  quizScreen.classList.remove('hidden');
+  renderQuestion();
+  scrollTop();
+}
+
+function renderQuestion() {
+  const q = state.questions[state.index];
+  const status = getWordStatus(q.id);
+
+  $('round-badge').textContent = `${getRoundIcon(q.round)} ${getRoundTitle(q.round)}`;
+  const fb = $('freq-badge');
+  fb.className = 'freq-badge ' + freqClass(q.frequency);
+  fb.querySelector('.stars').innerHTML = starsHtml(q.frequency);
+  $('freq-badge-label').textContent = freqLabel(q.frequency);
+
+  const sb = $('status-badge');
+  sb.className = 'status-badge ' + status;
+  const w = progress.words[q.id];
+  if (status === 'mastered') sb.textContent = `✓ Mastered`;
+  else if (status === 'weak') sb.textContent = `⚠ Weak (${w.correct}/${w.seen})`;
+  else if (status === 'learning') sb.textContent = `Learning (${w.correct}/${w.seen})`;
+  else sb.textContent = 'New';
+
+  const allYears = [2022, 2023, 2024];
+  $('year-tags').innerHTML = allYears.map(y => `<span class="year-tag ${q.years.includes(y) ? '' : 'muted'}">'${String(y).slice(2)}</span>`).join('');
+
+  $('question-label').textContent = `Question ${state.index + 1} of ${state.questions.length}`;
+  $('question-text').innerHTML = q.prompt;
+  $('question-hint').textContent = q.hint || '';
+
+  const optsEl = $('options');
+  optsEl.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.innerHTML = `<span class="opt-letter">${String.fromCharCode(65 + i)}</span><span>${opt}</span>`;
+    btn.addEventListener('click', () => selectAnswer(i));
+    optsEl.appendChild(btn);
+  });
+
+  $('feedback').classList.remove('show', 'correct', 'wrong');
+  $('feedback-title').textContent = '';
+  $('feedback-note').innerHTML = '';
+  $('feedback-meta').innerHTML = '';
+  $('transcript-box').style.display = 'none';
+  $('next-btn').disabled = true;
+  $('skip-btn').disabled = false;
+  $('next-btn').textContent = state.index === state.questions.length - 1 ? 'See results →' : 'Next →';
+
+  updateProgress();
+}
+
+function selectAnswer(idx) {
+  const q = state.questions[state.index];
+  const correct = idx === q.answer;
+  const opts = $('options');
+  [...opts.children].forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.answer) b.classList.add('correct');
+    else if (i === idx) b.classList.add('wrong');
+    else b.classList.add('faded');
+  });
+
+  const { wordStats, justMastered } = recordAnswer(q.id, correct);
+
+  const fb = $('feedback');
+  fb.classList.add('show');
+  if (correct) {
+    state.score++;
+    fb.classList.add('correct');
+    $('feedback-title').innerHTML = `<span class="badge">Correct</span> Richtig!`;
+  } else {
+    fb.classList.add('wrong');
+    $('feedback-title').innerHTML = `<span class="badge">Falsch</span> Not quite`;
+    $('quiz-card').classList.add('shake');
+    setTimeout(() => $('quiz-card').classList.remove('shake'), 400);
+  }
+
+  $('transcript-box').style.display = 'block';
+  $('transcript-text').innerHTML = q.transcript;
+  $('feedback-note').innerHTML = q.note;
+
+  const pills = [];
+  pills.push(`<div class="feedback-meta-pill"><strong>${freqLabel(q.frequency)}</strong> · ${q.years.join(', ')}</div>`);
+  if (justMastered) {
+    pills.push(`<div class="feedback-meta-pill mastered-now">✓ <strong>Word mastered!</strong> 3 correct in a row.</div>`);
+  } else if (correct && wordStats.streak > 0) {
+    pills.push(`<div class="feedback-meta-pill streak-up"><strong>Streak: ${wordStats.streak}/3</strong> to master</div>`);
+  } else if (!correct && wordStats.wrong > 1) {
+    pills.push(`<div class="feedback-meta-pill"><strong>Tricky one</strong> — wrong ${wordStats.wrong}× now</div>`);
+  }
+  $('feedback-meta').innerHTML = pills.join('');
+
+  state.answered.push({ questionIdx: state.index, chosen: idx, correct });
+  $('next-btn').disabled = false;
+  $('skip-btn').disabled = true;
+  updateProgress();
+}
+
+function skipQuestion() {
+  const q = state.questions[state.index];
+  const opts = $('options');
+  [...opts.children].forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.answer) b.classList.add('correct');
+    else b.classList.add('faded');
+  });
+  const fb = $('feedback');
+  fb.classList.add('show', 'wrong');
+  $('feedback-title').innerHTML = `<span class="badge">Skipped</span> Übersprungen`;
+  $('transcript-box').style.display = 'block';
+  $('transcript-text').innerHTML = q.transcript;
+  $('feedback-note').innerHTML = q.note;
+  $('feedback-meta').innerHTML = `<div class="feedback-meta-pill"><strong>${freqLabel(q.frequency)}</strong> · ${q.years.join(', ')}</div>`;
+  state.answered.push({ questionIdx: state.index, chosen: -1, correct: false });
+  $('next-btn').disabled = false;
+  $('skip-btn').disabled = true;
+}
+
+function nextQuestion() {
+  if (state.index < state.questions.length - 1) {
+    state.index++;
+    renderQuestion();
+    scrollTop();
+  } else {
+    showResults();
+  }
+}
+
+function updateProgress() {
+  const total = state.questions.length;
+  $('progress-fill').style.width = ((state.answered.length / total) * 100) + '%';
+  $('progress-text').textContent = `${String(state.index + 1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;
+  $('score-pill-num').textContent = state.score;
+}
+
+function showResults() {
+  quizScreen.classList.add('hidden');
+  resultsScreen.classList.remove('hidden');
+  $('final-score').textContent = state.score;
+  $('final-total').textContent = state.questions.length;
+  const pct = (state.score / state.questions.length) * 100;
+  $('verdict').innerHTML = getVerdict(pct);
+  buildReview();
+  buildNextActions();
+  refreshDashboard();
+  scrollTop();
+}
+
+function getVerdict(pct) {
+  if (pct === 100) return '<strong>"Ausgezeichnet!"</strong><br>Perfect — Distinction territory.';
+  if (pct >= 90) return '<strong>"Sehr gut!"</strong><br>Top of the class.';
+  if (pct >= 75) return '<strong>"Gut!"</strong><br>Higher Merit standard.';
+  if (pct >= 55) return '<strong>"Nicht schlecht."</strong><br>Solid Merit-level vocab.';
+  if (pct >= 40) return '<strong>"Es geht."</strong><br>Some gaps worth revising.';
+  return '<strong>"Übung macht den Meister."</strong><br>Practice makes perfect — try again.';
+}
+
+function buildReview() {
+  const list = $('review-list');
+  list.innerHTML = '';
+  state.answered.forEach((entry) => {
+    const q = state.questions[entry.questionIdx];
+    const wrap = document.createElement('div');
+    wrap.className = 'review-item';
+    const icon = entry.correct ? '<div class="review-icon ok">✓</div>' : '<div class="review-icon no">✗</div>';
+    const yourPick = entry.chosen === -1 ? '<em>(skipped)</em>' : q.options[entry.chosen];
+    const correctAns = q.options[q.answer];
+    const miniFreqClass = q.frequency >= 3 ? 'high' : q.frequency === 2 ? 'med' : '';
+    const miniFreq = `<span class="mini-freq ${miniFreqClass}">${'★'.repeat(q.frequency)}</span>`;
+
+    wrap.innerHTML = `
+      ${icon}
+      <div>
+        <div class="review-q">${q.prompt} ${miniFreq}</div>
+        <div class="review-a">
+          Your answer: ${entry.correct ? `<strong>${yourPick}</strong>` : yourPick}
+          ${!entry.correct ? `<br>Correct: <strong>${correctAns}</strong>` : ''}
+          <br>${q.note}
+        </div>
+        <div class="review-transcript">${q.transcript}</div>
+      </div>
+    `;
+    list.appendChild(wrap);
+  });
+}
+
+function buildNextActions() {
+  const wrongIds = state.answered.filter(a => !a.correct).map(a => state.questions[a.questionIdx].id);
+  const weakNow = ALL_QUESTIONS.filter(q => getWordStatus(q.id) === 'weak').length;
+  const wrap = $('next-actions');
+  let html = '';
+  if (wrongIds.length > 0) html += `<button class="btn" id="next-drill-wrong">↻ Drill the ${wrongIds.length} I got wrong</button>`;
+  if (weakNow > 0) html += `<button class="btn ghost" id="next-drill-weak">⚠ Weak words (${weakNow})</button>`;
+  html += `<button class="btn ghost" id="next-back-start">← Back to topics</button>`;
+  wrap.innerHTML = html;
+  if (wrongIds.length > 0) $('next-drill-wrong').addEventListener('click', () => {
+    const qs = shuffle(ALL_QUESTIONS.filter(q => wrongIds.includes(q.id)));
+    state = { questions: qs, index: 0, score: 0, answered: [], mode: 'wrong-followup' };
+    resultsScreen.classList.add('hidden');
+    quizScreen.classList.remove('hidden');
+    renderQuestion();
+    scrollTop();
+  });
+  if (weakNow > 0) $('next-drill-weak').addEventListener('click', () => startQuiz('weak'));
+  $('next-back-start').addEventListener('click', goToStart);
+}
+
+document.addEventListener('keydown', (e) => {
+  if (quizScreen.classList.contains('hidden')) return;
+  if (['1','2','3','4'].includes(e.key)) {
+    const idx = parseInt(e.key) - 1;
+    const opt = $('options').children[idx];
+    if (opt && !opt.disabled) opt.click();
+  } else if (e.key === 'Enter' && !$('next-btn').disabled) {
+    $('next-btn').click();
+  }
+});
+
+refreshDashboard();
+buildRoundsList();
+</script>
+</body>
+</html>
