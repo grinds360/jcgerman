@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grinds360 · JC German Vocab Trainer (2022–2025)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --g-black: #000000;
+    --g-white: #ffffff;
+    --g-red: #FF0000;
+    --g-red-deep: #cc0000;
+    --g-red-soft: #ffe5e5;
+    --ink: #0a0a0a;
+    --bg: #ffffff;
+    --bg-soft: #f7f7f7;
+    --bg-card: #ffffff;
+    --muted: #6b6b6b;
+    --border-soft: #e8e8e8;
+    --correct: #0a7d3a;
+    --correct-soft: #e6f7ec;
+    --wrong: #FF0000;
+    --wrong-soft: #ffe5e5;
+    --gold: #f5c518;
+    --mastered: #0a7d3a;
+    --weak: #FF0000;
+    --new: #6b6b6b;
+    --shadow-md: 4px 4px 0 var(--g-black);
+    --shadow-lg: 6px 6px 0 var(--g-black);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  html, body {
+    font-family: 'Poppins', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 90% -5%, rgba(255,0,0,0.06) 0%, transparent 35%),
+      radial-gradient(circle at 0% 100%, rgba(0,0,0,0.04) 0%, transparent 40%),
+      var(--bg);
+  }
+
+  .shell {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 28px 20px 64px;
+  }
+
+  /* ---------- Brand bar ---------- */
+  .brand-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 2px solid var(--g-black);
+    margin-bottom: 24px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--g-black);
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--g-black);
+    color: var(--g-white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 16px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    background: var(--g-red);
+    top: -3px; right: -3px;
+  }
+  .logo-text { line-height: 1; }
+  .logo-text .accent { color: var(--g-red); font-weight: 900; }
+  .logo-sub {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 2px;
+  }
+  .brand-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g-white);
+    background: var(--g-black);
+    padding: 6px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand-tag .dot {
+    width: 6px; height: 6px;
+    background: var(--g-red);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    border: 2px solid var(--g-black);
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 28px 32px;
+    position: relative;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--g-red);
+  }
+  .hero::after {
+    content: 'JC';
+    position: absolute;
+    right: -10px; bottom: -30px;
+    font-size: 180px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--g-red);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-weight: 900;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    position: relative;
+    z-index: 1;
+  }
+  h1 .highlight { color: var(--g-red); }
+  .hero-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #c4c4c4;
+    max-width: 56ch;
+    line-height: 1.55;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- Progress dashboard (NEW) ---------- */
+  .dashboard {
+    border: 2px solid var(--g-black);
+    background: var(--g-white);
+    padding: 22px 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+  }
+  .dashboard::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: var(--gold);
+  }
+  .dashboard-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .dashboard-head h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .dashboard-head .reset-link {
+    font-size: 11px;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: underline;
+    padding: 4px 6px;
+  }
+  .dashboard-head .reset-link:hover { color: var(--g-red); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 14px;
+  }
+  .stat {
+    text-align: left;
+  }
+  .stat-num {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--g-black);
+  }
+  .stat-num.mastered { color: var(--mastered); }
+  .stat-num.weak { color: var(--weak); }
+  .stat-num.streak { color: var(--g-red); }
+  .stat-num .accent { color: var(--g-red); }
+  .stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .stat-bar {
+    height: 6px;
+    background: var(--bg-soft);
+    border: 1px solid var(--g-black);
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .stat-bar-fill {
+    height: 100%;
+    background: var(--mastered);
+    transition: width 0.6s cubic-bezier(.2,.8,.2,1);
+  }
+
+  /* ---------- Frequency legend ---------- */
+  .freq-legend {
+    margin-bottom: 24px;
+    padding: 16px 18px;
+    border: 2px solid var(--g-black);
+    background: var(--bg-soft);
+    position: relative;
+  }
+  .freq-legend::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+  }
+  .freq-legend h3 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .freq-legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+  }
+  .freq-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .stars { color: var(--gold); letter-spacing: -1px; font-size: 14px; }
+  .stars.s4 { color: var(--g-red); }
+  .stars-gray { color: #c4c4c4; }
+
+  /* ---------- Progress (in-quiz) ---------- */
+  .progress-wrap {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .progress-track {
+    flex: 1;
+    min-width: 180px;
+    height: 10px;
+    background: var(--bg-soft);
+    border: 2px solid var(--g-black);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--g-red);
+    width: 0%;
+    transition: width 0.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .progress-text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+  .score-pill {
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 6px 12px;
+    letter-spacing: 0.05em;
+    border: 2px solid var(--g-black);
+  }
+  .score-pill .score-num { color: var(--g-red); }
+
+  /* ---------- Badge row ---------- */
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  .round-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--g-white);
+    border: 2px solid var(--g-black);
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .round-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--g-red);
+  }
+  .freq-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 2px solid var(--g-black);
+    padding: 5px 10px 5px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: var(--g-white);
+  }
+  .freq-badge.high {
+    background: var(--g-red);
+    color: var(--g-white);
+    border-color: var(--g-red);
+  }
+  .freq-badge.high .stars { color: var(--g-white); }
+  .freq-badge.med {
+    background: var(--gold);
+    color: var(--g-black);
+  }
+  .freq-badge.med .stars { color: var(--g-black); }
+  .freq-badge .label {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  /* NEW: status badge — mastered / weak / new */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 9px;
+    border: 2px solid var(--g-black);
+  }
+  .status-badge.mastered {
+    background: var(--correct-soft);
+    color: var(--mastered);
+    border-color: var(--mastered);
+  }
+  .status-badge.weak {
+    background: var(--wrong-soft);
+    color: var(--weak);
+    border-color: var(--weak);
+  }
+  .status-badge.learning {
+    background: var(--g-white);
+    color: var(--g-black);
+  }
+  .status-badge.new {
+    background: var(--g-black);
+    color: var(--g-white);
+  }
+  .year-tags {
+    display: inline-flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .year-tag {
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 4px 7px;
+    letter-spacing: 0.05em;
+  }
+  .year-tag.muted {
+    background: #e0e0e0;
+    color: #999;
+  }
+
+  /* ---------- Card ---------- */
+  .card {
+    background: var(--bg-card);
+    border: 2px solid var(--g-black);
+    padding: 28px 26px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    min-height: 320px;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--g-red);
+  }
+
+  .question-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .question {
+    font-weight: 700;
+    font-size: clamp(20px, 3.2vw, 28px);
+    line-height: 1.3;
+    margin-bottom: 6px;
+    letter-spacing: -0.015em;
+    color: var(--g-black);
+  }
+  .question .de {
+    color: var(--g-red);
+    font-weight: 800;
+    font-style: italic;
+  }
+  .question-hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 22px;
+    font-weight: 400;
+  }
+
+  /* NEW: speak button (inline pronunciation) */
+  .speak-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    margin-left: 4px;
+    background: var(--g-white);
+    border: 2px solid var(--g-black);
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
+    vertical-align: middle;
+    transition: all 0.12s ease;
+    color: var(--g-black);
+    padding: 0;
+    box-shadow: 2px 2px 0 var(--g-black);
+  }
+  .speak-btn:hover {
+    background: var(--g-red);
+    color: var(--g-white);
+    border-color: var(--g-red);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--g-black);
+  }
+  .speak-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--g-black);
+  }
+  .speak-btn.speaking {
+    background: var(--g-red);
+    color: var(--g-white);
+    border-color: var(--g-red);
+    animation: speakingPulse 0.8s ease-in-out infinite;
+  }
+  @keyframes speakingPulse {
+    0%, 100% { box-shadow: 2px 2px 0 var(--g-black); }
+    50% { box-shadow: 2px 2px 0 var(--g-black), 0 0 0 4px rgba(255,0,0,0.2); }
+  }
+  /* Big speak button for the main question */
+  .speak-btn.lg {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 540px) {
+    .options { grid-template-columns: 1fr; }
+  }
+  .opt {
+    background: var(--g-white);
+    border: 2px solid var(--g-black);
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 3px 3px 0 var(--g-black);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--g-black);
+  }
+  .opt-letter {
+    font-size: 11px;
+    font-weight: 700;
+    width: 24px; height: 24px;
+    background: var(--g-black);
+    color: var(--g-white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .opt:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--g-red);
+    border-color: var(--g-red);
+  }
+  .opt:hover:not(:disabled) .opt-letter { background: var(--g-red); }
+  .opt:active:not(:disabled) {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--g-black);
+  }
+  .opt:disabled { cursor: default; }
+  .opt.correct {
+    background: var(--correct-soft);
+    border-color: var(--correct);
+    color: var(--correct);
+    font-weight: 700;
+    box-shadow: 3px 3px 0 var(--correct);
+  }
+  .opt.correct .opt-letter { background: var(--correct); }
+  .opt.wrong {
+    background: var(--wrong-soft);
+    border-color: var(--g-red);
+    color: var(--g-red);
+    text-decoration: line-through;
+    box-shadow: 3px 3px 0 var(--g-red);
+  }
+  .opt.wrong .opt-letter { background: var(--g-red); }
+  .opt.faded { opacity: 0.4; }
+
+  /* ---------- Feedback ---------- */
+  .feedback {
+    border-top: 2px solid var(--g-black);
+    padding-top: 18px;
+    margin-top: 8px;
+    min-height: 60px;
+    display: none;
+  }
+  .feedback.show { display: block; animation: pop 0.35s ease-out; }
+  @keyframes pop {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .feedback-title {
+    font-weight: 800;
+    font-size: 18px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .feedback-title .badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .feedback.correct .feedback-title { color: var(--correct); }
+  .feedback.correct .badge {
+    background: var(--correct);
+    color: var(--g-white);
+  }
+  .feedback.wrong .feedback-title { color: var(--g-red); }
+  .feedback.wrong .badge {
+    background: var(--g-red);
+    color: var(--g-white);
+  }
+  .feedback-note {
+    font-size: 14px;
+    color: var(--g-black);
+    line-height: 1.6;
+  }
+  .feedback-note strong {
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 1px 5px;
+    font-weight: 600;
+  }
+  .feedback-note em {
+    color: var(--g-red);
+    font-style: italic;
+    font-weight: 600;
+  }
+  .feedback-meta {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .feedback-meta-pill {
+    padding: 8px 12px;
+    background: var(--bg-soft);
+    border-left: 4px solid var(--g-red);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .feedback-meta-pill strong { color: var(--g-red); font-weight: 800; }
+  .feedback-meta-pill.streak-up {
+    border-left-color: var(--mastered);
+    background: var(--correct-soft);
+  }
+  .feedback-meta-pill.streak-up strong { color: var(--mastered); }
+  .feedback-meta-pill.mastered-now {
+    background: var(--mastered);
+    color: var(--g-white);
+    border-left-color: var(--g-black);
+    font-weight: 700;
+    animation: pop 0.4s ease-out;
+  }
+  .feedback-meta-pill.mastered-now strong {
+    color: var(--gold);
+  }
+
+  /* ---------- Controls ---------- */
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    gap: 12px;
+  }
+  .btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 13px 22px;
+    border: 2px solid var(--g-black);
+    background: var(--g-red);
+    color: var(--g-white);
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--g-black);
+    transition: all 0.15s ease;
+  }
+  .btn:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--g-black);
+    background: var(--g-red-deep);
+  }
+  .btn:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--g-black);
+  }
+  .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .btn.ghost {
+    background: var(--g-white);
+    color: var(--g-black);
+  }
+  .btn.ghost:hover:not(:disabled) {
+    background: var(--g-black);
+    color: var(--g-white);
+  }
+  .btn.sm { padding: 9px 14px; font-size: 11px; }
+
+  /* ---------- Start screen ---------- */
+  .start-card {
+    background: var(--bg-card);
+    border: 2px solid var(--g-black);
+    padding: 32px 28px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .start-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--g-red);
+  }
+  .start-card h2 {
+    font-weight: 900;
+    font-size: clamp(26px, 4.2vw, 36px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -0.025em;
+  }
+  .start-card h2 .stamp {
+    background: var(--g-red);
+    color: var(--g-white);
+    padding: 2px 12px;
+    display: inline-block;
+    transform: rotate(-1.5deg);
+    font-weight: 800;
+  }
+  .start-card p {
+    color: var(--g-black);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    max-width: 60ch;
+  }
+  .start-card p strong {
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 1px 6px;
+    font-weight: 600;
+  }
+
+  /* Smart drill panel — featured row of drill modes */
+  .smart-drills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin: 22px 0;
+  }
+  .drill-card {
+    border: 2px solid var(--g-black);
+    padding: 16px;
+    background: var(--g-white);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.15s ease;
+    box-shadow: 3px 3px 0 var(--g-black);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+  }
+  .drill-card.primary {
+    background: var(--g-black);
+    color: var(--g-white);
+  }
+  .drill-card.weak {
+    background: var(--wrong-soft);
+    border-color: var(--g-red);
+  }
+  .drill-card.priority {
+    background: var(--g-red);
+    color: var(--g-white);
+    border-color: var(--g-red);
+  }
+  .drill-card:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--g-red);
+  }
+  .drill-card.priority:hover { box-shadow: 5px 5px 0 var(--g-black); }
+  .drill-card:active:not(:disabled) {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--g-black);
+  }
+  .drill-card:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .drill-card-icon {
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .drill-card-title {
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+  .drill-card-desc {
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.8;
+    line-height: 1.4;
+  }
+  .drill-card-count {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.7;
+  }
+
+  .topic-picker-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 24px 0 12px;
+  }
+  .rounds-list {
+    list-style: none;
+    margin: 0 0 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .round-card {
+    border: 2px solid var(--g-black);
+    padding: 12px 14px;
+    background: var(--g-white);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.15s ease;
+    box-shadow: 3px 3px 0 var(--g-black);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .round-card:hover {
+    background: var(--g-black);
+    color: var(--g-white);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--g-red);
+  }
+  .round-card:hover .round-card-num { background: var(--g-red); }
+  .round-card:hover .round-card-meta { color: #c4c4c4; }
+  .round-card:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--g-black);
+  }
+  .round-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .round-card-num {
+    font-size: 10px;
+    font-weight: 800;
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 3px 8px;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .round-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    flex: 1;
+  }
+  /* Per-topic progress dots */
+  .round-mastery {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .round-card:hover .round-mastery { color: #c4c4c4; }
+  .mastery-bar {
+    flex: 1;
+    height: 5px;
+    background: var(--bg-soft);
+    border: 1px solid var(--g-black);
+    overflow: hidden;
+    max-width: 80px;
+  }
+  .round-card:hover .mastery-bar { border-color: var(--g-white); }
+  .mastery-fill {
+    height: 100%;
+    background: var(--mastered);
+    transition: width 0.5s ease;
+  }
+  .round-card-meta {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .round-card-meta .stars { color: var(--gold); font-size: 12px; letter-spacing: -1px; }
+  .round-card-meta .stars-gray { color: #d0d0d0; }
+  .round-card:hover .round-card-meta .stars-gray { color: #555; }
+
+  /* ---------- Results screen ---------- */
+  .results-hero {
+    text-align: center;
+    padding: 40px 24px 36px;
+    border: 2px solid var(--g-black);
+    background: var(--g-black);
+    color: var(--g-white);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .results-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--g-red);
+  }
+  .results-hero .stamp {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: var(--g-red);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .results-hero .score-big {
+    font-weight: 900;
+    font-size: clamp(60px, 14vw, 120px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .results-hero .score-big .of {
+    color: var(--g-red);
+    font-size: 0.4em;
+    font-weight: 700;
+  }
+  .results-hero .verdict {
+    font-size: 16px;
+    margin-top: 14px;
+    color: #c4c4c4;
+    max-width: 40ch;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.5;
+  }
+  .results-hero .verdict strong { color: var(--g-white); font-weight: 700; }
+
+  .review {
+    border: 2px solid var(--g-black);
+    background: var(--g-white);
+    padding: 24px 22px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .review::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--g-red);
+  }
+  .review h3 {
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--g-black);
+  }
+  .review-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-soft);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .review-item:last-child { border-bottom: none; }
+  .review-icon {
+    width: 24px; height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    border: 2px solid var(--g-black);
+    margin-top: 2px;
+  }
+  .review-icon.ok {
+    background: var(--correct-soft);
+    color: var(--correct);
+    border-color: var(--correct);
+  }
+  .review-icon.no {
+    background: var(--wrong-soft);
+    color: var(--g-red);
+    border-color: var(--g-red);
+  }
+  .review-q {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 5px;
+    line-height: 1.35;
+  }
+  .review-q .de { color: var(--g-red); font-weight: 700; font-style: italic; }
+  .review-q .mini-freq {
+    font-size: 10px;
+    margin-left: 6px;
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 2px 6px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+  }
+  .review-q .mini-freq.high { background: var(--g-red); }
+  .review-q .mini-freq.med { background: var(--gold); color: var(--g-black); }
+  .review-a {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .review-a strong {
+    color: var(--g-black);
+    background: #fff3a0;
+    padding: 0 4px;
+    font-weight: 600;
+  }
+  .review-a em {
+    color: var(--g-red);
+    font-style: italic;
+  }
+
+  .next-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .next-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-soft);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  footer strong { color: var(--g-black); font-weight: 700; }
+  footer .dot { color: var(--g-red); }
+
+  .hidden { display: none !important; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  .shake { animation: shake 0.4s ease-in-out; }
+
+  /* Toast for "no data yet" or info messages */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--g-black);
+    color: var(--g-white);
+    padding: 12px 20px;
+    border: 2px solid var(--g-black);
+    box-shadow: 4px 4px 0 var(--g-red);
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    max-width: 90vw;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+  }
+</style>
+</head>
+<body>
+<div class="shell" id="top-anchor">
+
+  <!-- Brand bar -->
+  <div class="brand-bar">
+    <a class="logo" href="https://grinds360.ie">
+      <div class="logo-mark">G</div>
+      <div class="logo-text">
+        Grinds<span class="accent">360</span>
+        <span class="logo-sub">Junior Cycle Revision</span>
+      </div>
+    </a>
+    <div class="brand-tag">
+      <span class="dot"></span>
+      German · CL
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-eyebrow">Vocab Trainer · 4 Years of Past Papers</div>
+    <h1>Junior Cycle German<br><span class="highlight">Vocab Drill 2022–2025</span></h1>
+    <p class="hero-sub">Frequency-ranked, spaced-repetition trainer with pronunciation. Your progress saves automatically on this device.</p>
+  </div>
+
+  <!-- START SCREEN -->
+  <div id="start-screen">
+
+    <!-- Progress dashboard (NEW) -->
+    <div class="dashboard">
+      <div class="dashboard-head">
+        <h3>Your progress</h3>
+        <button class="reset-link" id="reset-progress-btn">Reset progress</button>
+      </div>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-num mastered" id="stat-mastered">0</div>
+          <div class="stat-label">Mastered</div>
+          <div class="stat-bar"><div class="stat-bar-fill" id="stat-mastered-bar"></div></div>
+        </div>
+        <div class="stat">
+          <div class="stat-num weak" id="stat-weak">0</div>
+          <div class="stat-label">Weak words</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="stat-seen">0</div>
+          <div class="stat-label">Words seen</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num streak" id="stat-streak">0</div>
+          <div class="stat-label">Day streak 🔥</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="stat-accuracy">—</div>
+          <div class="stat-label">Accuracy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Frequency Legend -->
+    <div class="freq-legend">
+      <h3>Frequency badges</h3>
+      <div class="freq-legend-grid">
+        <div class="freq-legend-item"><span class="stars s4">★★★★</span> Asked all 4 years</div>
+        <div class="freq-legend-item"><span class="stars">★★★</span><span class="stars-gray">★</span> Asked 3 of 4 years</div>
+        <div class="freq-legend-item"><span class="stars">★★</span><span class="stars-gray">★★</span> Asked 2 of 4 years</div>
+        <div class="freq-legend-item"><span class="stars">★</span><span class="stars-gray">★★★</span> Asked 1 of 4 years</div>
+      </div>
+    </div>
+
+    <div class="start-card">
+      <h2>Ready for <span class="stamp">die Prüfung?</span></h2>
+      <p>Vocab from <strong>2022, 2023, 2024 &amp; 2025</strong> Common Level papers — ranked by how often each word has appeared. Your weak words get drilled more often automatically.</p>
+
+      <div class="topic-picker-label">Smart drills</div>
+      <div class="smart-drills">
+        <button class="drill-card primary" id="drill-smart">
+          <div class="drill-card-icon">🧠</div>
+          <div class="drill-card-title">Smart drill</div>
+          <div class="drill-card-desc">Weak words first, then frequency-weighted. 20 questions.</div>
+        </button>
+        <button class="drill-card weak" id="drill-weak">
+          <div class="drill-card-icon">⚠️</div>
+          <div class="drill-card-title">Weak words only</div>
+          <div class="drill-card-desc">Just the ones you've gotten wrong.</div>
+          <div class="drill-card-count" id="weak-count">0 words</div>
+        </button>
+        <button class="drill-card priority" id="drill-priority">
+          <div class="drill-card-icon">★</div>
+          <div class="drill-card-title">Top priority</div>
+          <div class="drill-card-desc">Just the ★★★ and ★★★★ must-knows.</div>
+        </button>
+      </div>
+
+      <div class="topic-picker-label">Pick a topic — or do the full drill</div>
+      <ul class="rounds-list" id="rounds-list"></ul>
+
+      <div style="margin-top: 14px;">
+        <button class="btn ghost" id="start-btn">Full drill (all words)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quiz-screen" class="hidden">
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-text" id="progress-text">01 / 30</div>
+      <div class="score-pill">Score: <span class="score-num" id="score-pill-num">0</span></div>
+      <button class="btn ghost sm" id="back-to-topics">← Topics</button>
+    </div>
+
+    <div class="card" id="quiz-card">
+      <div class="badge-row">
+        <div class="round-badge" id="round-badge">Round 1</div>
+        <div class="freq-badge" id="freq-badge">
+          <span class="stars"></span>
+          <span class="label" id="freq-badge-label"></span>
+        </div>
+        <div class="status-badge" id="status-badge">New</div>
+        <div class="year-tags" id="year-tags"></div>
+      </div>
+      <div class="question-label" id="question-label">Question 1</div>
+      <div class="question" id="question-text">—</div>
+      <div class="question-hint" id="question-hint"></div>
+
+      <div class="options" id="options"></div>
+
+      <div class="feedback" id="feedback">
+        <div class="feedback-title" id="feedback-title"></div>
+        <div class="feedback-note" id="feedback-note"></div>
+        <div class="feedback-meta" id="feedback-meta"></div>
+      </div>
+
+      <div class="controls">
+        <button class="btn ghost" id="skip-btn">Skip</button>
+        <button class="btn" id="next-btn" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="results-screen" class="hidden">
+    <div class="results-hero">
+      <div class="stamp">— Endergebnis · Final Score —</div>
+      <div class="score-big"><span id="final-score">0</span><span class="of"> / <span id="final-total">0</span></span></div>
+      <div class="verdict" id="verdict">—</div>
+    </div>
+
+    <div class="review">
+      <h3>Word Review</h3>
+      <div id="review-list"></div>
+    </div>
+
+    <div class="next-actions" id="next-actions"></div>
+  </div>
+
+  <footer>
+    <strong>Grinds360</strong> <span class="dot">●</span> JC German Past Papers 2022–2025 <span class="dot">●</span> grinds360.ie
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// QUESTIONS DATA
+// Each question has a stable `id` so persistence survives data updates
+// ============================================================
+const ALL_QUESTIONS = [
+  // Family
+  { id: "fam-geschwister", round: "family", prompt: "What does <span class='de' data-speak='Geschwister'>Geschwister</span> mean?", hint: "Asked in blog questions every single year", options: ["Siblings", "Cousins", "Grandparents", "Twins"], answer: 0, frequency: 4, years: [2022, 2023, 2024, 2025], note: "<strong>Geschwister</strong> = siblings (always plural). <em>Bruder</em> = brother, <em>Schwester</em> = sister, <em>Zwillinge</em> = twins." },
+  { id: "fam-bruder", round: "family", prompt: "<span class='de' data-speak='Sie hat einen Bruder'>Sie hat einen Bruder.</span> What is a <em>Bruder</em>?", hint: "Nina Chuba 2025, Daniel Brühl 2023, Mark Forster 2022", options: ["A sister", "A brother", "A cousin", "A nephew"], answer: 1, frequency: 4, years: [2022, 2023, 2024, 2025], note: "<strong>Bruder</strong> = brother. Plural: <em>Brüder</em>. <em>Schwester</em> = sister; plural <em>Schwestern</em>." },
+  { id: "fam-zwillinge", round: "family", prompt: "What does <span class='de' data-speak='Zwillinge'>Zwillinge</span> mean?", hint: "Zora and Jana, 2024 paper", options: ["Siblings", "Cousins", "Twins", "Best friends"], answer: 2, frequency: 1, years: [2024], note: "<strong>Zwillinge</strong> = twins. In 2024, Zora and Jana were twins with red hair and freckles (<em>Sommersprossen</em>)." },
+  { id: "fam-wowohnst", round: "family", prompt: "<span class='de' data-speak='Wo wohnst du'>Wo wohnst du?</span> — what does this ask?", hint: "The classic opening blog question — every year", options: ["Where do you live?", "Where are you from?", "Where are you going?", "Where do you work?"], answer: 0, frequency: 4, years: [2022, 2023, 2024, 2025], note: "<strong>wohnen</strong> = to live (reside). <em>Ich wohne in Dublin</em> = I live in Dublin. Different from <em>leben</em> (to be alive)." },
+  { id: "fam-wohnung", round: "family", prompt: "What is <span class='de' data-speak='die Wohnung'>die Wohnung</span>?", hint: "Tamika's new apartment, 2025", options: ["A house", "A flat / apartment", "A bedroom", "A garden"], answer: 1, frequency: 1, years: [2025], note: "<strong>Wohnung</strong> = flat / apartment. <em>Haus</em> = house. From the verb <em>wohnen</em>." },
+  { id: "fam-kuehlschrank", round: "family", prompt: "What is the <span class='de' data-speak='Kühlschrank'>Kühlschrank</span>?", hint: "Tamika's story, 2025", options: ["Cupboard", "Fridge", "Oven", "Microwave"], answer: 1, frequency: 1, years: [2025], note: "<strong>Kühlschrank</strong> = fridge. <em>kühl</em> (cool) + <em>Schrank</em> (cupboard)." },
+  { id: "fam-hausmeister", round: "family", prompt: "Who is <span class='de' data-speak='der Hausmeister'>der Hausmeister</span>?", hint: "Herr Lamprecht in Tamika's block, 2025", options: ["The landlord", "The neighbour", "The caretaker", "The postman"], answer: 2, frequency: 1, years: [2025], note: "<strong>Hausmeister</strong> = caretaker / janitor. <em>Nachbar(in)</em> = neighbour." },
+
+  // School
+  { id: "sch-schule", round: "school", prompt: "What is <span class='de' data-speak='die Schule'>die Schule</span>?", hint: "Every paper, every year", options: ["School", "A class", "A teacher", "A pupil"], answer: 0, frequency: 4, years: [2022, 2023, 2024, 2025], note: "<strong>Schule</strong> = school. <em>Schüler(in)</em> = pupil. <em>Lehrer(in)</em> = teacher. <em>Klasse</em> = class." },
+  { id: "sch-lieblingsfach", round: "school", prompt: "<span class='de' data-speak='Was ist dein Lieblingsfach'>Was ist dein Lieblingsfach?</span> — what is <em>Lieblingsfach</em>?", hint: "2023 blog question", options: ["Favourite teacher", "Favourite subject", "Favourite friend", "Favourite room"], answer: 1, frequency: 1, years: [2023], note: "<strong>Lieblingsfach</strong> = favourite subject. <em>Lieblings-</em> is the prefix for 'favourite' anything." },
+  { id: "sch-pause", round: "school", prompt: "What is <span class='de' data-speak='die Schulpause'>die Schulpause</span> / <span class='de' data-speak='Pause'>Pause</span>?", hint: "2024 + 2025 blog, 2022 Jenny's break", options: ["School trip", "School break", "School test", "School bus"], answer: 1, frequency: 3, years: [2022, 2024, 2025], note: "<strong>Pause</strong> = break. <em>Pausenbrot</em> = break-time sandwich (2023 paper)." },
+  { id: "sch-kuli", round: "school", prompt: "<span class='de' data-speak='Gib mir bitte den Kuli'>Gib mir bitte den ____ zum Schreiben!</span>", hint: "Q19 a, 2025 · something to write with", options: ["Tisch", "Buch", "Kuli", "Tafel"], answer: 2, frequency: 1, years: [2025], note: "<strong>Kuli</strong> = biro / pen (short for <em>Kugelschreiber</em>). <em>Tafel</em> = whiteboard." },
+  { id: "sch-vokabeln", round: "school", prompt: "<span class='de' data-speak='Schreib die Vokabeln in dein Heft'>Schreib die ____ in dein Heft!</span>", hint: "Q19 e, 2025", options: ["Vokabeln", "Milch", "Tafel", "Tisch"], answer: 0, frequency: 1, years: [2025], note: "<strong>Vokabeln</strong> = vocabulary (always plural). A <em>Heft</em> is a copybook." },
+  { id: "sch-unterricht", round: "school", prompt: "What is <span class='de' data-speak='der Unterricht'>der Unterricht</span>?", hint: "Class / lessons — appears every year", options: ["Homework", "A break", "Class / lessons", "An exam"], answer: 2, frequency: 4, years: [2022, 2023, 2024, 2025], note: "<strong>Unterricht</strong> = class / lessons. <em>Deutschunterricht</em> = German class." },
+  { id: "sch-klassenarbeit", round: "school", prompt: "What is a <span class='de' data-speak='Klassenarbeit'>Klassenarbeit</span>?", hint: "Q10, 2023 compound words", options: ["A class trip", "A class test", "A class project", "A class photo"], answer: 1, frequency: 1, years: [2023], note: "<strong>Klassen + Arbeit = class test</strong>. <em>Klasse</em> (class) + <em>Arbeit</em> (work/test)." },
+
+  // Hobbies
+  { id: "hob-lieblings", round: "hobbies", prompt: "<span class='de' data-speak='Was ist dein Lieblingshobby'>Was ist dein Lieblingshobby?</span> — what does <em>Lieblings-</em> mean?", hint: "In blog questions every year", options: ["Boring", "Favourite", "Strange", "New"], answer: 1, frequency: 4, years: [2022, 2023, 2024, 2025], note: "<strong>Lieblings-</strong> = favourite. Attached to any noun: <em>Lieblingsfach</em>, <em>Lieblingsessen</em>, <em>Lieblingssänger</em>." },
+  { id: "hob-freizeit", round: "hobbies", prompt: "What does <span class='de' data-speak='Freizeit'>Freizeit</span> mean?", hint: "Q10, 2023 compound words", options: ["Work time", "Free / leisure time", "Lunch time", "Weekend"], answer: 1, frequency: 1, years: [2023], note: "<strong>Frei + Zeit = leisure time</strong>. <em>Freizeitaktivitäten</em> = leisure activities." },
+  { id: "hob-wochenende", round: "hobbies", prompt: "<span class='de' data-speak='Was machst du am Wochenende'>Was machst du am Wochenende?</span> What is <em>Wochenende</em>?", hint: "Blog questions, every year", options: ["Holiday", "Week", "Weekend", "Day off"], answer: 2, frequency: 4, years: [2022, 2023, 2024, 2025], note: "<strong>Wochenende</strong> = weekend. <em>Woche</em> (week) + <em>Ende</em> (end)." },
+  { id: "hob-spielen", round: "hobbies", prompt: "What does <span class='de' data-speak='spielen'>spielen</span> mean?", hint: "Used in every paper", options: ["To play", "To run", "To learn", "To read"], answer: 0, frequency: 4, years: [2022, 2023, 2024, 2025], note: "<strong>spielen</strong> = to play. <em>Theater spielen</em> = to act (2022), <em>Fußball spielen</em> = to play football." },
+  { id: "hob-kegeln", round: "hobbies", prompt: "What is <span class='de' data-speak='kegeln'>kegeln</span>?", hint: "Q12, 2024 picture matching", options: ["Climbing", "Painting", "Bowling", "Laughing"], answer: 2, frequency: 1, years: [2024], note: "<strong>kegeln</strong> = (10-pin) bowling. Other 2024 verbs: <em>malen</em> (paint), <em>klettern</em> (climb), <em>gärtnern</em> (garden)." },
+  { id: "hob-klettern", round: "hobbies", prompt: "What does <span class='de' data-speak='klettern'>klettern</span> mean?", hint: "Both 2024 picture-matching AND 2025 verboten signs", options: ["Climbing", "Swimming", "Running", "Dancing"], answer: 0, frequency: 2, years: [2024, 2025], note: "<strong>klettern</strong> = to climb. Also <em>schwimmen</em>, <em>laufen</em>, <em>tanzen</em>, <em>singen</em>." },
+  { id: "hob-theater", round: "hobbies", prompt: "What is <span class='de' data-speak='das Theater'>das Theater</span>?", hint: "Die Nidderstars, 2022", options: ["A theatre", "A cinema", "A museum", "A library"], answer: 0, frequency: 1, years: [2022], note: "<strong>Theater</strong> = theatre. <em>Theaterstück</em> = a play, <em>Rolle</em> = role, <em>proben</em> = to rehearse." },
+
+  // Food
+  { id: "foo-fruhstuck", round: "food", prompt: "What is <span class='de' data-speak='das Frühstück'>das Frühstück</span>?", hint: "Asked in 2023, 2024 AND 2025", options: ["Lunch", "Dinner", "Breakfast", "Snack"], answer: 2, frequency: 3, years: [2023, 2024, 2025], note: "<strong>Frühstück</strong> = breakfast. <em>früh</em> (early) + <em>Stück</em> (piece). <em>Mittagessen</em> = lunch, <em>Abendessen</em> = dinner." },
+  { id: "foo-currywurst", round: "food", prompt: "What is a <span class='de' data-speak='Currywurst'>Currywurst</span>?", hint: "Q11, 2025 picture matching", options: ["A curry rice dish", "A curry sausage", "A curry soup", "A spicy bread"], answer: 1, frequency: 1, years: [2025], note: "<strong>Currywurst</strong> = curry sausage. A German fast-food classic. <em>Wurst</em> = sausage." },
+  { id: "foo-orangensaft", round: "food", prompt: "<span class='de' data-speak='Orangensaft'>Orangensaft</span> means…", hint: "Q14 c, 2025 Muttertag advert", options: ["Apple juice", "Orange juice", "Champagne", "Coffee"], answer: 1, frequency: 1, years: [2025], note: "<strong>Orangensaft</strong> = orange juice. <em>Saft</em> = juice. <em>Apfelsaft</em> = apple juice." },
+  { id: "foo-fleisch", round: "food", prompt: "<span class='de' data-speak='Ich esse kein Fleisch'>Ich esse kein Fleisch.</span> What does this mean?", hint: "Q15, 2022 picture-phrase matching", options: ["I eat fish", "I eat meat", "I don't eat meat", "I don't like meat"], answer: 2, frequency: 1, years: [2022], note: "<strong>Fleisch</strong> = meat. <em>kein</em> = no/none. Useful phrase for any vegetarian abroad." },
+  { id: "foo-kartoffel", round: "food", prompt: "Split <span class='de' data-speak='Kartoffelsalat'>Kartoffelsalat</span> — what does it mean?", hint: "Q13 b, 2025 compound words", options: ["Tomato salad", "Pasta salad", "Potato salad", "Cabbage salad"], answer: 2, frequency: 1, years: [2025], note: "<strong>Kartoffel + Salat = potato salad</strong>. A classic German side dish." },
+  { id: "foo-gesund", round: "food", prompt: "What does <span class='de' data-speak='gesund'>gesund</span> mean?", hint: "2023 healthy eating, 2025 dentists warning", options: ["Sweet", "Healthy", "Tasty", "Spicy"], answer: 1, frequency: 2, years: [2023, 2025], note: "<strong>gesund</strong> = healthy. Opposite: <em>ungesund</em>." },
+  { id: "foo-hunger", round: "food", prompt: "What does <span class='de' data-speak='Hunger'>Hunger</span> mean?", hint: "Tamika 2025, Ben's breakfast 2024, breakfast article 2023", options: ["Thirst", "Hunger", "Tiredness", "Excitement"], answer: 1, frequency: 3, years: [2023, 2024, 2025], note: "<strong>Hunger</strong> = hunger. <em>Ich habe Hunger</em> = I'm hungry (literally 'I have hunger'). <em>Durst</em> = thirst." },
+
+  // Travel
+  { id: "tra-sommerferien", round: "travel", prompt: "What are <span class='de' data-speak='die Sommerferien'>die Sommerferien</span>?", hint: "Tamika 2025, acodemy 2024, camping 2023", options: ["Summer school", "Summer holidays", "Summer term", "Summer job"], answer: 1, frequency: 3, years: [2023, 2024, 2025], note: "<strong>Sommerferien</strong> = summer holidays. <em>Ferien</em> = holidays (always plural). <em>Urlaub</em> = vacation." },
+  { id: "tra-campingplatz", round: "travel", prompt: "What is <span class='de' data-speak='der Campingplatz'>der Campingplatz</span>?", hint: "Camping article 2023, Tamika 2025", options: ["A car park", "A campsite", "A campfire", "A playground"], answer: 1, frequency: 2, years: [2023, 2025], note: "<strong>Campingplatz</strong> = campsite. <em>Zelt</em> = tent, <em>Wohnwagen</em> = caravan." },
+  { id: "tra-fahrkarte", round: "travel", prompt: "What is a <span class='de' data-speak='Fahrkarte'>Fahrkarte</span> / <span class='de' data-speak='Fahrschein'>Fahrschein</span>?", hint: "2023 picture, 2024 phrase 'Die Fahrscheine, bitte!'", options: ["A driver's licence", "A travel ticket", "A map", "A timetable"], answer: 1, frequency: 2, years: [2023, 2024], note: "<strong>Fahrkarte / Fahrschein</strong> = travel ticket. From <em>fahren</em> (to go/drive). <em>Bahnhof</em> = train station." },
+  { id: "tra-ubahn", round: "travel", prompt: "What is the <span class='de' data-speak='U-Bahn'>U-Bahn</span>?", hint: "Q9, 2023 picture matching", options: ["A bus", "A tram", "The underground / metro", "A taxi"], answer: 2, frequency: 1, years: [2023], note: "<strong>U-Bahn</strong> = underground (short for <em>Untergrundbahn</em>). <em>S-Bahn</em> = suburban train." },
+  { id: "tra-ausflug", round: "travel", prompt: "<span class='de' data-speak='Ausflug'>Ausflug</span> — what is it?", hint: "Q17, 2025 DB Ausflug App", options: ["A holiday", "A day trip / outing", "A flight", "A train journey"], answer: 1, frequency: 1, years: [2025], note: "<strong>Ausflug</strong> = excursion / day trip. The DB Ausflug App in 2025 helps plan these." },
+  { id: "tra-gutereise", round: "travel", prompt: "<span class='de' data-speak='Gute Reise'>Gute Reise!</span> — when do you say this?", hint: "Q20 c, 2024", options: ["Welcoming someone", "Wishing safe travels", "Saying goodnight", "Saying thank you"], answer: 1, frequency: 1, years: [2024], note: "<strong>Gute Reise!</strong> = Have a good trip. <em>Reise</em> = trip, journey." },
+
+  // Animals
+  { id: "ani-hund", round: "animals", prompt: "What is a <span class='de' data-speak='Hund'>Hund</span>?", hint: "Zambo 2022, pets 2023, Rex 2024, Hundeleine 2025", options: ["A cat", "A dog", "A horse", "A rabbit"], answer: 1, frequency: 4, years: [2022, 2023, 2024, 2025], note: "<strong>Hund</strong> = dog. Appears in some form EVERY year. <em>Hundeleine</em> = dog lead, <em>Hundebett</em> = dog bed." },
+  { id: "ani-hundeleine", round: "animals", prompt: "What is a <span class='de' data-speak='Hundeleine'>Hundeleine</span>?", hint: "Q11, 2025 picture matching", options: ["Dog bowl", "Dog collar", "Dog bed", "Dog lead"], answer: 3, frequency: 1, years: [2025], note: "<strong>Hundeleine</strong> = dog lead/leash. <em>Hund</em> (dog) + <em>Leine</em> (line/leash)." },
+  { id: "ani-katzenhaare", round: "animals", prompt: "Split <span class='de' data-speak='Katzenhaare'>Katzenhaare</span>", hint: "Q13 a, 2025 compound words", options: ["Cat food", "Cat hair(s)", "Cat toys", "Cat litter"], answer: 1, frequency: 1, years: [2025], note: "<strong>Katzen + Haare = cat hairs</strong>. <em>Katze</em> = cat." },
+  { id: "ani-tierarzt", round: "animals", prompt: "Who is a <span class='de' data-speak='Tierarzt'>Tierarzt</span>?", hint: "Q9, 2023 picture matching", options: ["A vet", "A zookeeper", "A dog trainer", "A farmer"], answer: 0, frequency: 1, years: [2023], note: "<strong>Tierarzt</strong> = vet. <em>Tier</em> (animal) + <em>Arzt</em> (doctor). Compare <em>Zahnarzt</em> (dentist)." },
+  { id: "ani-haustiere", round: "animals", prompt: "<span class='de' data-speak='Hast du Haustiere'>Hast du Haustiere?</span> — what is this asking?", hint: "Q16 d, 2023", options: ["Do you have homework?", "Do you have any pets?", "Do you have siblings?", "Do you have time?"], answer: 1, frequency: 1, years: [2023], note: "<strong>Haustier</strong> = pet (literally 'house animal')." },
+  { id: "ani-fuettern", round: "animals", prompt: "What does <span class='de' data-speak='füttern'>füttern</span> mean?", hint: "Bauernhof 2023 — feed pigs, cows, sheep", options: ["To wash", "To feed", "To pet", "To train"], answer: 1, frequency: 1, years: [2023], note: "<strong>füttern</strong> = to feed (animals). <em>essen</em> (humans eat), <em>fressen</em> (animals eat)." },
+
+  // Clothes
+  { id: "clo-handschuhe", round: "clothes", prompt: "What are <span class='de' data-speak='Handschuhe'>Handschuhe</span>?", hint: "Q11, 2022 picture matching", options: ["Boots", "Gloves", "Socks", "Slippers"], answer: 1, frequency: 1, years: [2022], note: "<strong>Handschuhe</strong> = gloves. <em>Hand</em> + <em>Schuhe</em> ('hand shoes')." },
+  { id: "clo-pullover", round: "clothes", prompt: "What is a <span class='de' data-speak='Pullover'>Pullover</span>?", hint: "Q11, 2022", options: ["A jacket", "A shirt", "A jumper", "A coat"], answer: 2, frequency: 1, years: [2022], note: "<strong>Pullover</strong> = jumper / pullover. Often shortened to <em>Pulli</em>." },
+  { id: "clo-mutze", round: "clothes", prompt: "What is a <span class='de' data-speak='Mütze'>Mütze</span>?", hint: "Q11, 2022 + 2023 Bauernhof (Wollmütze)", options: ["A scarf", "A hat / beanie", "A pair of gloves", "A jacket"], answer: 1, frequency: 2, years: [2022, 2023], note: "<strong>Mütze</strong> = woolly hat / beanie. <em>Wollmütze</em> in 2023. <em>Hut</em> = a proper hat." },
+  { id: "clo-schal", round: "clothes", prompt: "What is a <span class='de' data-speak='Schal'>Schal</span>?", hint: "Q11, 2022", options: ["A belt", "A tie", "A scarf", "A hat"], answer: 2, frequency: 1, years: [2022], note: "<strong>Schal</strong> = scarf. Easy — almost the same in English." },
+  { id: "clo-schuhe", round: "clothes", prompt: "What are <span class='de' data-speak='Schuhe'>Schuhe</span>?", hint: "2022 picture-matching, 2024 Tim's 150 pairs", options: ["Socks", "Shoes", "Boots", "Slippers"], answer: 1, frequency: 2, years: [2022, 2024], note: "<strong>Schuhe</strong> = shoes. Tim Bendzko had 150 pairs in Berlin (2024)! <em>Freizeitschuhe</em> = casual shoes." },
+  { id: "clo-buecher", round: "clothes", prompt: "<span class='de' data-speak='Ich möchte diese Bücher kaufen'>Ich möchte diese Bücher kaufen.</span>", hint: "Q13 A, 2024", options: ["I want to read these books", "I want to buy these books", "I want to borrow these books", "I want to sell these books"], answer: 1, frequency: 1, years: [2024], note: "<strong>kaufen</strong> = to buy. <em>verkaufen</em> = to sell. Tim sold cars in Berlin." },
+  { id: "clo-kostet", round: "clothes", prompt: "<span class='de' data-speak='Was kostet das T-Shirt'>Was kostet das T-Shirt?</span> — what does this ask?", hint: "Q16 c, 2023", options: ["What size is the t-shirt?", "How much is the t-shirt?", "What colour is the t-shirt?", "Where is the t-shirt?"], answer: 1, frequency: 1, years: [2023], note: "<strong>kosten</strong> = to cost. <em>Wie viel kostet…?</em> = How much does … cost?" },
+
+  // Health
+  { id: "hea-leid", round: "health", prompt: "<span class='de' data-speak='Es tut mir Leid'>Es tut mir Leid.</span> — what does this mean?", hint: "Used in 2022 + Jenny's accident 2024", options: ["I'm tired", "I'm sorry", "I'm late", "I'm hungry"], answer: 1, frequency: 3, years: [2022, 2023, 2024], note: "<strong>Es tut mir Leid</strong> = I'm sorry / I apologise. Anton said it after hitting Jenny with a football in 2024." },
+  { id: "hea-besserung", round: "health", prompt: "<span class='de' data-speak='Gute Besserung'>Gute Besserung!</span> — when do you say this?", hint: "Pharmacy dialogue, Q21 2024", options: ["Good night", "Good luck", "Get well soon", "Goodbye"], answer: 2, frequency: 1, years: [2024], note: "<strong>Gute Besserung!</strong> = Get well soon. <em>Besserung</em> = recovery." },
+  { id: "hea-magen", round: "health", prompt: "<span class='de' data-speak='Magenschmerzen'>Magenschmerzen</span> — what is this?", hint: "Pharmacy dialogue, 2024", options: ["A headache", "Stomach ache", "A cold", "A sore throat"], answer: 1, frequency: 1, years: [2024], note: "<strong>Magenschmerzen</strong> = stomach ache. <em>Kopfschmerzen</em> = headache." },
+  { id: "hea-sauer", round: "health", prompt: "<span class='de' data-speak='Ich bin sauer auf meine Eltern'>Ich bin sauer auf meine Eltern.</span> What does <em>sauer</em> mean here?", hint: "Tamika's story, 2025", options: ["Sad", "Angry / cross", "Bored", "Worried"], answer: 1, frequency: 1, years: [2025], note: "<strong>sauer</strong> literally means 'sour', but figuratively = angry/cross at someone." },
+  { id: "hea-glueck", round: "health", prompt: "<span class='de' data-speak='Viel Glück'>Viel Glück!</span> — when do you say this?", hint: "Q20 e, 2024 · for a test", options: ["Welcome", "Good luck", "Well done", "Cheers"], answer: 1, frequency: 1, years: [2024], note: "<strong>Viel Glück!</strong> = Good luck! <em>Zum Glück</em> = luckily." },
+  { id: "hea-wiegehts", round: "health", prompt: "<span class='de' data-speak='Wie gehts'>Wie geht's?</span> — what does this ask?", hint: "Q16 a, 2023", options: ["What's your name?", "Where are you going?", "How are you?", "What's the time?"], answer: 2, frequency: 1, years: [2023], note: "<strong>Wie geht's?</strong> = How are you? (informal). Literally 'How goes it?'" },
+
+  // Instructions
+  { id: "ins-verboten", round: "instructions", prompt: "What does <span class='de' data-speak='verboten'>verboten</span> mean?", hint: "2024 Handys verboten + 2025 multiple signs", options: ["Allowed", "Forbidden", "Open", "Closed"], answer: 1, frequency: 2, years: [2024, 2025], note: "<strong>verboten</strong> = forbidden. <em>Was ist hier verboten?</em> was a 2025 question." },
+  { id: "ins-handys", round: "instructions", prompt: "Sign with a phone crossed out: <span class='de' data-speak='Handys sind verboten'>____ sind verboten.</span>", hint: "Q12 a, 2025", options: ["Autos", "Handys", "Eis", "Klettern"], answer: 1, frequency: 2, years: [2024, 2025], note: "<strong>Handys</strong> = mobile phones. False friend! <em>Handy</em> in German is NOT 'handy' — it means mobile phone." },
+  { id: "ins-rauchen", round: "instructions", prompt: "Sign with a cigarette crossed out: <span class='de' data-speak='Rauchen ist verboten'>____ ist verboten.</span>", hint: "Q12 c, 2025", options: ["Trinken", "Essen", "Rauchen", "Schlafen"], answer: 2, frequency: 1, years: [2025], note: "<strong>Rauchen</strong> = smoking. The verb is <em>rauchen</em>." },
+  { id: "ins-langsam", round: "instructions", prompt: "<span class='de' data-speak='Langsam'>Langsam!</span> — what does this sign mean?", hint: "Q14 b, 2024 · 'Spielende Kinder' sign", options: ["Fast!", "Stop!", "Slow!", "Quiet!"], answer: 2, frequency: 1, years: [2024], note: "<strong>Langsam!</strong> = Slow! The 2024 sign asked drivers to slow down because children were playing (<em>Spielende Kinder</em>)." },
+  { id: "ins-draussen", round: "instructions", prompt: "<span class='de' data-speak='Wir müssen leider draußen warten'>Wir müssen leider draußen warten.</span> What does this say?", hint: "Q14 a, 2024 · the dog sign", options: ["We must wait inside", "We must wait outside, unfortunately", "Dogs are welcome inside", "Dogs must be on leads"], answer: 1, frequency: 1, years: [2024], note: "<strong>draußen</strong> = outside. <em>drinnen</em> = inside. <em>leider</em> = unfortunately." },
+  { id: "ins-wiebitte", round: "instructions", prompt: "<span class='de' data-speak='Wie bitte'>Wie bitte?</span> — when do you say this?", hint: "Q20 a, 2024", options: ["You didn't hear", "You disagree", "You're saying yes", "You're saying please"], answer: 0, frequency: 1, years: [2024], note: "<strong>Wie bitte?</strong> = Pardon? / Sorry, what?" },
+
+  // Money
+  { id: "mon-geld", round: "money", prompt: "What is <span class='de' data-speak='das Geld'>das Geld</span>?", hint: "Q9, 2023 picture matching", options: ["A bank", "Money", "A wallet", "A shop"], answer: 1, frequency: 2, years: [2023, 2025], note: "<strong>Geld</strong> = money. <em>Taschengeld</em> = pocket money." },
+  { id: "mon-trinkgeld", round: "money", prompt: "What is <span class='de' data-speak='Trinkgeld'>Trinkgeld</span>?", hint: "Viktoria's job, 2023", options: ["Pocket money", "A tip", "Wages", "A bonus"], answer: 1, frequency: 1, years: [2023], note: "<strong>Trinkgeld</strong> = tip (literally 'drink-money')." },
+  { id: "mon-kostenlos", round: "money", prompt: "What does <span class='de' data-speak='kostenlos'>kostenlos</span> mean?", hint: "2024 museum, 2025 swimming, 2024 acodemy", options: ["Expensive", "Cheap", "Free of charge", "Discounted"], answer: 2, frequency: 3, years: [2024, 2024, 2025], note: "<strong>kostenlos</strong> = free of charge. Literally 'cost-less'. Synonym: <em>kostenfrei</em>." },
+  { id: "mon-preiswert", round: "money", prompt: "<span class='de' data-speak='preiswert'>preiswert</span> — what does this mean?", hint: "Camping article 2023", options: ["Expensive", "Good value", "Free", "Overpriced"], answer: 1, frequency: 1, years: [2023], note: "<strong>preiswert</strong> = good value / reasonably priced. Literally 'price-worthy'." },
+  { id: "mon-arbeiten", round: "money", prompt: "What does <span class='de' data-speak='arbeiten'>arbeiten</span> mean?", hint: "Both part-time jobs in 2023", options: ["To play", "To work", "To rest", "To study"], answer: 1, frequency: 1, years: [2023], note: "<strong>arbeiten</strong> = to work. <em>Arbeit</em> = work / job." },
+  { id: "mon-verdienen", round: "money", prompt: "What does <span class='de' data-speak='verdienen'>verdienen</span> mean?", hint: "Viktoria's job, 2023", options: ["To spend", "To save", "To earn", "To borrow"], answer: 2, frequency: 1, years: [2023], note: "<strong>verdienen</strong> = to earn. <em>Ausgeben</em> = to spend." },
+
+  // Weather/Time
+  { id: "wet-wetter", round: "weather", prompt: "What does <span class='de' data-speak='das Wetter'>das Wetter</span> mean?", hint: "Sports lesson 2022, blog 2024, breakfast article 2023", options: ["The week", "The weather", "The wind", "The weekend"], answer: 1, frequency: 3, years: [2022, 2023, 2024], note: "<strong>Wetter</strong> = weather. <em>Bei kaltem Wetter</em> = in cold weather." },
+  { id: "wet-sonne", round: "weather", prompt: "What does <span class='de' data-speak='die Sonne'>die Sonne</span> mean?", hint: "2022 sports day, 2025 Sonnenbrille", options: ["The sky", "The sun", "The summer", "The Saturday"], answer: 1, frequency: 2, years: [2022, 2025], note: "<strong>Sonne</strong> = sun. <em>Sonnenbrille</em> = sunglasses (2025), <em>Sonnencreme</em> = sunscreen (2023)." },
+  { id: "wet-regnen", round: "weather", prompt: "What does <span class='de' data-speak='regnen'>regnen</span> mean?", hint: "2023 Bauernhof article", options: ["To snow", "To rain", "To be cloudy", "To be windy"], answer: 1, frequency: 1, years: [2023], note: "<strong>regnen</strong> = to rain. <em>Es regnet</em> = it's raining. <em>Regenkleidung</em> = rain gear." },
+  { id: "wet-kalt", round: "weather", prompt: "What does <span class='de' data-speak='kalt'>kalt</span> mean?", hint: "Acodemy 2024 winter season", options: ["Hot", "Cold", "Warm", "Cool"], answer: 1, frequency: 1, years: [2024], note: "<strong>kalt</strong> = cold. <em>warm</em> = warm, <em>kühl</em> = cool, <em>heiß</em> = hot." },
+  { id: "wet-weihnachten", round: "weather", prompt: "What does <span class='de' data-speak='Weihnachten'>Weihnachten</span> mean?", hint: "2023 article, 2024 Ben's story, 2025 blog", options: ["New Year", "Easter", "Christmas", "Carnival"], answer: 2, frequency: 3, years: [2023, 2024, 2025], note: "<strong>Weihnachten</strong> = Christmas. <em>Heiligabend</em> = Christmas Eve. <em>Frohe Weihnachten!</em> = Merry Christmas! Compare <em>Frohe Ostern!</em> = Happy Easter!" },
+  { id: "wet-muttertag", round: "weather", prompt: "What is <span class='de' data-speak='Muttertag'>Muttertag</span>?", hint: "Q14 a, 2025", options: ["Father's Day", "Mother's Day", "Christmas", "Carnival"], answer: 1, frequency: 1, years: [2025], note: "<strong>Muttertag</strong> = Mother's Day. <em>Mutter</em> + <em>Tag</em>. <em>Vatertag</em> = Father's Day." }
+];
+
+const ROUNDS = [
+  { id: "family",       title: "Family & Home" },
+  { id: "school",       title: "School Life" },
+  { id: "hobbies",      title: "Hobbies & Free Time" },
+  { id: "food",         title: "Food & Drink" },
+  { id: "travel",       title: "Holidays & Transport" },
+  { id: "animals",      title: "Animals & Pets" },
+  { id: "clothes",      title: "Clothing & Shopping" },
+  { id: "health",       title: "Health & Feelings" },
+  { id: "instructions", title: "Signs & Commands" },
+  { id: "money",        title: "Money & Work" },
+  { id: "weather",      title: "Weather & Seasons" }
+];
+
+// ============================================================
+// PERSISTENCE LAYER (localStorage)
+// ============================================================
+const STORAGE_KEY = 'g360_jc_german_progress_v1';
+
+const defaultProgress = {
+  words: {},          // { [questionId]: { seen, correct, wrong, streak, lastSeen } }
+  sessions: 0,
+  totalCorrect: 0,
+  totalAnswered: 0,
+  lastSessionDate: null,
+  dayStreak: 0
+};
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return { ...defaultProgress };
+    const parsed = JSON.parse(raw);
+    return { ...defaultProgress, ...parsed };
+  } catch (e) {
+    console.warn('Could not load progress', e);
+    return { ...defaultProgress };
+  }
+}
+
+function saveProgress() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  } catch (e) {
+    console.warn('Could not save progress', e);
+  }
+}
+
+function recordAnswer(qId, isCorrect) {
+  if (!progress.words[qId]) {
+    progress.words[qId] = { seen: 0, correct: 0, wrong: 0, streak: 0, lastSeen: null };
+  }
+  const w = progress.words[qId];
+  const wasMastered = w.streak >= 3;
+  w.seen++;
+  w.lastSeen = Date.now();
+  if (isCorrect) {
+    w.correct++;
+    w.streak++;
+  } else {
+    w.wrong++;
+    w.streak = 0;
+  }
+  const isMasteredNow = w.streak >= 3 && !wasMastered;
+
+  progress.totalAnswered++;
+  if (isCorrect) progress.totalCorrect++;
+
+  saveProgress();
+  return { wordStats: w, justMastered: isMasteredNow };
+}
+
+function bumpSessionStreak() {
+  const today = new Date().toDateString();
+  const last = progress.lastSessionDate;
+  if (last === today) return; // already counted today
+
+  if (last) {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    if (last === yesterday.toDateString()) {
+      progress.dayStreak++;
+    } else {
+      progress.dayStreak = 1;
+    }
+  } else {
+    progress.dayStreak = 1;
+  }
+  progress.lastSessionDate = today;
+  progress.sessions++;
+  saveProgress();
+}
+
+function getWordStatus(qId) {
+  const w = progress.words[qId];
+  if (!w || w.seen === 0) return 'new';
+  if (w.streak >= 3) return 'mastered';
+  if (w.wrong > 0 && w.streak < 3) return 'weak';
+  return 'learning';
+}
+
+function resetProgress() {
+  if (!confirm('Reset all your progress on this device? This cannot be undone.')) return;
+  progress = { ...defaultProgress, words: {} };
+  saveProgress();
+  refreshDashboard();
+  buildRoundsList();
+  showToast('Progress reset.');
+}
+
+// ============================================================
+// PRONUNCIATION (Speech Synthesis API)
+// ============================================================
+let voicesReady = false;
+let germanVoice = null;
+
+function loadVoices() {
+  if (!('speechSynthesis' in window)) return;
+  const voices = speechSynthesis.getVoices();
+  if (voices.length === 0) return;
+  // Prefer a German voice. Order of preference: de-DE > de-AT > de-CH > any de
+  germanVoice = voices.find(v => v.lang === 'de-DE') ||
+                voices.find(v => v.lang === 'de-AT') ||
+                voices.find(v => v.lang === 'de-CH') ||
+                voices.find(v => v.lang.startsWith('de'));
+  voicesReady = true;
+}
+if ('speechSynthesis' in window) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function speak(text, btnEl) {
+  if (!('speechSynthesis' in window)) {
+    showToast('Audio not supported in this browser.');
+    return;
+  }
+  // Cancel any previous utterance
+  speechSynthesis.cancel();
+
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'de-DE';
+  utter.rate = 0.85;
+  utter.pitch = 1.0;
+  if (germanVoice) utter.voice = germanVoice;
+
+  if (btnEl) {
+    btnEl.classList.add('speaking');
+    utter.onend = () => btnEl.classList.remove('speaking');
+    utter.onerror = () => btnEl.classList.remove('speaking');
+  }
+  speechSynthesis.speak(utter);
+}
+
+// After rendering content, find all .de spans with data-speak and add speak buttons
+function attachSpeakButtons(container) {
+  const targets = container.querySelectorAll('.de[data-speak]');
+  targets.forEach(el => {
+    // Skip if already has a speak button as next sibling
+    if (el.nextElementSibling && el.nextElementSibling.classList.contains('speak-btn')) return;
+    const text = el.getAttribute('data-speak');
+    const btn = document.createElement('button');
+    btn.className = 'speak-btn';
+    btn.innerHTML = '🔊';
+    btn.title = 'Hear pronunciation';
+    btn.setAttribute('aria-label', `Hear ${text} pronounced`);
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      speak(text, btn);
+    });
+    el.parentNode.insertBefore(btn, el.nextSibling);
+  });
+}
+
+// ============================================================
+// State
+// ============================================================
+let progress = loadProgress();
+let state = {
+  questions: [],
+  index: 0,
+  score: 0,
+  answered: [],
+  mode: "all"
+};
+
+// ============================================================
+// DOM refs
+// ============================================================
+const $ = (id) => document.getElementById(id);
+const startScreen = $('start-screen');
+const quizScreen = $('quiz-screen');
+const resultsScreen = $('results-screen');
+const startBtn = $('start-btn');
+const nextBtn = $('next-btn');
+const skipBtn = $('skip-btn');
+const backToTopicsBtn = $('back-to-topics');
+const progressFill = $('progress-fill');
+const progressText = $('progress-text');
+const scorePillNum = $('score-pill-num');
+const roundBadge = $('round-badge');
+const freqBadge = $('freq-badge');
+const freqBadgeLabel = $('freq-badge-label');
+const statusBadge = $('status-badge');
+const yearTags = $('year-tags');
+const questionLabel = $('question-label');
+const questionText = $('question-text');
+const questionHint = $('question-hint');
+const optionsEl = $('options');
+const feedbackEl = $('feedback');
+const feedbackTitle = $('feedback-title');
+const feedbackNote = $('feedback-note');
+const feedbackMeta = $('feedback-meta');
+const quizCard = $('quiz-card');
+const finalScoreEl = $('final-score');
+const finalTotalEl = $('final-total');
+const verdictEl = $('verdict');
+const reviewListEl = $('review-list');
+const roundsListEl = $('rounds-list');
+const nextActionsEl = $('next-actions');
+const toastEl = $('toast');
+
+// ============================================================
+// Helpers
+// ============================================================
+function freqClass(freq) {
+  if (freq >= 3) return 'high';
+  if (freq === 2) return 'med';
+  return 'low';
+}
+function freqLabel(freq) {
+  if (freq === 4) return 'Every year';
+  if (freq === 3) return '3 of 4 years';
+  if (freq === 2) return '2 of 4 years';
+  return '1 of 4 years';
+}
+function starsHtml(freq) {
+  return `<span class="stars">${'★'.repeat(freq)}</span><span class="stars-gray">${'★'.repeat(4 - freq)}</span>`;
+}
+function scrollTop() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+function getRoundTitle(roundId) {
+  const r = ROUNDS.find(r => r.id === roundId);
+  return r ? r.title : roundId;
+}
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+let toastTimer;
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2500);
+}
+
+// ============================================================
+// Dashboard refresh
+// ============================================================
+function refreshDashboard() {
+  const totalWords = ALL_QUESTIONS.length;
+  let mastered = 0, weak = 0, seen = 0;
+  ALL_QUESTIONS.forEach(q => {
+    const status = getWordStatus(q.id);
+    if (status === 'mastered') mastered++;
+    else if (status === 'weak') weak++;
+    if (status !== 'new') seen++;
+  });
+
+  $('stat-mastered').textContent = mastered;
+  $('stat-weak').textContent = weak;
+  $('stat-seen').textContent = `${seen}/${totalWords}`;
+  $('stat-streak').textContent = progress.dayStreak;
+  $('stat-mastered-bar').style.width = ((mastered / totalWords) * 100) + '%';
+
+  const acc = progress.totalAnswered > 0
+    ? Math.round((progress.totalCorrect / progress.totalAnswered) * 100) + '%'
+    : '—';
+  $('stat-accuracy').textContent = acc;
+
+  // Weak words drill count
+  $('weak-count').textContent = `${weak} word${weak !== 1 ? 's' : ''}`;
+  $('drill-weak').disabled = weak === 0;
+}
+
+// ============================================================
+// Question selection logic (spaced repetition core)
+// ============================================================
+function buildSmartDrill(limit = 20) {
+  // Sort by priority weight (higher = more urgent)
+  // Weak words: weight = frequency × 4 + (wrong - correct) × 2
+  // New words:  weight = frequency × 2
+  // Learning:   weight = frequency × 1.5
+  // Mastered:   weight = frequency × 0.3 (rarely re-tested)
+  const weighted = ALL_QUESTIONS.map(q => {
+    const w = progress.words[q.id] || { seen: 0, correct: 0, wrong: 0, streak: 0 };
+    const status = getWordStatus(q.id);
+    let weight;
+    if (status === 'weak') weight = q.frequency * 4 + (w.wrong - w.correct) * 2 + 10;
+    else if (status === 'new') weight = q.frequency * 2 + 5;
+    else if (status === 'learning') weight = q.frequency * 1.5 + 2;
+    else weight = q.frequency * 0.3; // mastered
+
+    return { q, weight: Math.max(weight, 0.1) };
+  });
+
+  // Weighted random selection without replacement
+  const selected = [];
+  const pool = [...weighted];
+  while (selected.length < limit && pool.length > 0) {
+    const total = pool.reduce((s, p) => s + p.weight, 0);
+    let r = Math.random() * total;
+    let pickIdx = 0;
+    for (let i = 0; i < pool.length; i++) {
+      r -= pool[i].weight;
+      if (r <= 0) { pickIdx = i; break; }
+    }
+    selected.push(pool[pickIdx].q);
+    pool.splice(pickIdx, 1);
+  }
+  return selected;
+}
+
+function buildWeakDrill() {
+  const weak = ALL_QUESTIONS.filter(q => getWordStatus(q.id) === 'weak');
+  return shuffle(weak);
+}
+
+// ============================================================
+// Topic picker
+// ============================================================
+function buildRoundsList() {
+  roundsListEl.innerHTML = '';
+  ROUNDS.forEach((round, i) => {
+    const qs = ALL_QUESTIONS.filter(q => q.round === round.id);
+    if (qs.length === 0) return;
+
+    const mastered = qs.filter(q => getWordStatus(q.id) === 'mastered').length;
+    const masteryPct = (mastered / qs.length) * 100;
+    const avgFreq = Math.round(qs.reduce((s, q) => s + q.frequency, 0) / qs.length);
+
+    const btn = document.createElement('button');
+    btn.className = 'round-card';
+    btn.innerHTML = `
+      <div class="round-card-head">
+        <span class="round-card-num">${String(i + 1).padStart(2, '0')}</span>
+        <span class="round-card-title">${round.title}</span>
+      </div>
+      <div class="round-card-meta">${starsHtml(avgFreq)} · ${qs.length} questions</div>
+      <div class="round-mastery">
+        <span>${mastered}/${qs.length}</span>
+        <div class="mastery-bar"><div class="mastery-fill" style="width:${masteryPct}%"></div></div>
+      </div>
+    `;
+    btn.addEventListener('click', () => startQuiz(round.id));
+    roundsListEl.appendChild(btn);
+  });
+}
+
+// ============================================================
+// Flow
+// ============================================================
+startBtn.addEventListener('click', () => startQuiz('all'));
+$('drill-smart').addEventListener('click', () => startQuiz('smart'));
+$('drill-weak').addEventListener('click', () => startQuiz('weak'));
+$('drill-priority').addEventListener('click', () => startQuiz('priority'));
+$('reset-progress-btn').addEventListener('click', resetProgress);
+nextBtn.addEventListener('click', nextQuestion);
+skipBtn.addEventListener('click', skipQuestion);
+backToTopicsBtn.addEventListener('click', goToStart);
+
+function goToStart() {
+  startScreen.classList.remove('hidden');
+  quizScreen.classList.add('hidden');
+  resultsScreen.classList.add('hidden');
+  refreshDashboard();
+  buildRoundsList();
+  scrollTop();
+}
+
+function startQuiz(mode) {
+  let qs = [];
+  if (mode === 'all') qs = shuffle([...ALL_QUESTIONS]);
+  else if (mode === 'priority') qs = shuffle(ALL_QUESTIONS.filter(q => q.frequency >= 3));
+  else if (mode === 'smart') qs = buildSmartDrill(20);
+  else if (mode === 'weak') qs = buildWeakDrill();
+  else qs = shuffle(ALL_QUESTIONS.filter(q => q.round === mode));
+
+  if (qs.length === 0) {
+    showToast('No questions available for this mode.');
+    return;
+  }
+
+  bumpSessionStreak();
+
+  state = { questions: qs, index: 0, score: 0, answered: [], mode };
+  startScreen.classList.add('hidden');
+  resultsScreen.classList.add('hidden');
+  quizScreen.classList.remove('hidden');
+  renderQuestion();
+  scrollTop();
+}
+
+function renderQuestion() {
+  const q = state.questions[state.index];
+  const status = getWordStatus(q.id);
+
+  roundBadge.textContent = getRoundTitle(q.round);
+
+  freqBadge.className = 'freq-badge ' + freqClass(q.frequency);
+  freqBadge.querySelector('.stars').innerHTML = starsHtml(q.frequency);
+  freqBadgeLabel.textContent = freqLabel(q.frequency);
+
+  // Status badge
+  statusBadge.className = 'status-badge ' + status;
+  const w = progress.words[q.id];
+  if (status === 'mastered') statusBadge.textContent = `✓ Mastered (${w.streak}/${w.streak})`;
+  else if (status === 'weak') statusBadge.textContent = `⚠ Weak (${w.correct}/${w.seen})`;
+  else if (status === 'learning') statusBadge.textContent = `Learning (${w.correct}/${w.seen})`;
+  else statusBadge.textContent = 'New';
+
+  const allYears = [2022, 2023, 2024, 2025];
+  yearTags.innerHTML = allYears.map(y => {
+    const tested = q.years.includes(y);
+    return `<span class="year-tag ${tested ? '' : 'muted'}">'${String(y).slice(2)}</span>`;
+  }).join('');
+
+  questionLabel.textContent = `Question ${state.index + 1} of ${state.questions.length}`;
+  questionText.innerHTML = q.prompt;
+  questionHint.textContent = q.hint || '';
+
+  // Attach speak buttons to all German words in the question
+  attachSpeakButtons(questionText);
+
+  // Options
+  optionsEl.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.innerHTML = `<span class="opt-letter">${String.fromCharCode(65 + i)}</span><span>${opt}</span>`;
+    btn.addEventListener('click', () => selectAnswer(i));
+    optionsEl.appendChild(btn);
+  });
+
+  feedbackEl.classList.remove('show', 'correct', 'wrong');
+  feedbackTitle.textContent = '';
+  feedbackNote.innerHTML = '';
+  feedbackMeta.innerHTML = '';
+  nextBtn.disabled = true;
+  skipBtn.disabled = false;
+  nextBtn.textContent = state.index === state.questions.length - 1 ? 'See results →' : 'Next →';
+
+  updateProgress();
+}
+
+function selectAnswer(chosenIdx) {
+  const q = state.questions[state.index];
+  const correct = chosenIdx === q.answer;
+
+  [...optionsEl.children].forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.answer) b.classList.add('correct');
+    else if (i === chosenIdx) b.classList.add('wrong');
+    else b.classList.add('faded');
+  });
+
+  // Persist
+  const { wordStats, justMastered } = recordAnswer(q.id, correct);
+
+  feedbackEl.classList.add('show');
+  if (correct) {
+    state.score++;
+    feedbackEl.classList.add('correct');
+    feedbackTitle.innerHTML = `<span class="badge">Correct</span> Richtig!`;
+  } else {
+    feedbackEl.classList.add('wrong');
+    feedbackTitle.innerHTML = `<span class="badge">Falsch</span> Not quite`;
+    quizCard.classList.add('shake');
+    setTimeout(() => quizCard.classList.remove('shake'), 400);
+  }
+  feedbackNote.innerHTML = q.note;
+  attachSpeakButtons(feedbackNote);
+
+  // Build feedback meta pills
+  const pills = [];
+  const yearList = q.years.join(', ');
+  pills.push(`<div class="feedback-meta-pill"><strong>${freqLabel(q.frequency)}</strong> · ${yearList}</div>`);
+
+  if (justMastered) {
+    pills.push(`<div class="feedback-meta-pill mastered-now">✓ <strong>Word mastered!</strong> 3 correct in a row.</div>`);
+  } else if (correct && wordStats.streak > 0) {
+    pills.push(`<div class="feedback-meta-pill streak-up"><strong>Streak: ${wordStats.streak}/3</strong> to master</div>`);
+  } else if (!correct && wordStats.wrong > 1) {
+    pills.push(`<div class="feedback-meta-pill"><strong>Tricky one</strong> — wrong ${wordStats.wrong}× now</div>`);
+  }
+  feedbackMeta.innerHTML = pills.join('');
+
+  // Auto-play pronunciation on correct answer (subtle reinforcement)
+  if (correct) {
+    const firstSpeakable = questionText.querySelector('.de[data-speak]');
+    if (firstSpeakable) {
+      const text = firstSpeakable.getAttribute('data-speak');
+      setTimeout(() => speak(text), 300);
+    }
+  }
+
+  state.answered.push({ questionIdx: state.index, chosen: chosenIdx, correct });
+  nextBtn.disabled = false;
+  skipBtn.disabled = true;
+  updateProgress();
+}
+
+function skipQuestion() {
+  const q = state.questions[state.index];
+  [...optionsEl.children].forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.answer) b.classList.add('correct');
+    else b.classList.add('faded');
+  });
+  feedbackEl.classList.add('show', 'wrong');
+  feedbackTitle.innerHTML = `<span class="badge">Skipped</span> Übersprungen`;
+  feedbackNote.innerHTML = q.note;
+  attachSpeakButtons(feedbackNote);
+  const yearList = q.years.join(', ');
+  feedbackMeta.innerHTML = `<div class="feedback-meta-pill"><strong>${freqLabel(q.frequency)}</strong> · ${yearList}</div>`;
+  state.answered.push({ questionIdx: state.index, chosen: -1, correct: false });
+  nextBtn.disabled = false;
+  skipBtn.disabled = true;
+}
+
+function nextQuestion() {
+  if (state.index < state.questions.length - 1) {
+    state.index++;
+    renderQuestion();
+    scrollTop();
+  } else {
+    showResults();
+  }
+}
+
+function updateProgress() {
+  const answered = state.answered.length;
+  const total = state.questions.length;
+  progressFill.style.width = ((answered / total) * 100) + '%';
+  progressText.textContent = `${String(state.index + 1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;
+  scorePillNum.textContent = state.score;
+}
+
+function showResults() {
+  quizScreen.classList.add('hidden');
+  resultsScreen.classList.remove('hidden');
+  finalScoreEl.textContent = state.score;
+  finalTotalEl.textContent = state.questions.length;
+  const pct = (state.score / state.questions.length) * 100;
+  verdictEl.innerHTML = getVerdict(pct);
+  buildReview();
+  buildNextActions();
+  refreshDashboard();
+  scrollTop();
+}
+
+function getVerdict(pct) {
+  if (pct === 100) return '<strong>"Ausgezeichnet!"</strong><br>A perfect score — Distinction territory.';
+  if (pct >= 90) return '<strong>"Sehr gut!"</strong><br>Top of the class.';
+  if (pct >= 75) return '<strong>"Gut!"</strong><br>Higher Merit standard.';
+  if (pct >= 55) return '<strong>"Nicht schlecht."</strong><br>Solid Merit-level vocab.';
+  if (pct >= 40) return '<strong>"Es geht."</strong><br>Some gaps worth revising.';
+  return '<strong>"Übung macht den Meister."</strong><br>Practice makes perfect — try again.';
+}
+
+function buildReview() {
+  reviewListEl.innerHTML = '';
+  state.answered.forEach((entry) => {
+    const q = state.questions[entry.questionIdx];
+    const wrap = document.createElement('div');
+    wrap.className = 'review-item';
+
+    const icon = entry.correct
+      ? '<div class="review-icon ok">✓</div>'
+      : '<div class="review-icon no">✗</div>';
+
+    const yourPick = entry.chosen === -1 ? '<em>(skipped)</em>' : q.options[entry.chosen];
+    const correctAns = q.options[q.answer];
+    const miniFreqClass = q.frequency >= 3 ? 'high' : q.frequency === 2 ? 'med' : '';
+    const miniFreq = `<span class="mini-freq ${miniFreqClass}">${'★'.repeat(q.frequency)}</span>`;
+
+    wrap.innerHTML = `
+      ${icon}
+      <div>
+        <div class="review-q">${q.prompt} ${miniFreq}</div>
+        <div class="review-a">
+          Your answer: ${entry.correct ? `<strong>${yourPick}</strong>` : yourPick}
+          ${!entry.correct ? `<br>Correct: <strong>${correctAns}</strong>` : ''}
+          <br>${q.note}
+          <br><em>Tested in: ${q.years.join(', ')}</em>
+        </div>
+      </div>
+    `;
+    reviewListEl.appendChild(wrap);
+  });
+  attachSpeakButtons(reviewListEl);
+}
+
+function buildNextActions() {
+  const wrongIds = state.answered.filter(a => !a.correct).map(a => state.questions[a.questionIdx].id);
+  const weakNow = ALL_QUESTIONS.filter(q => getWordStatus(q.id) === 'weak').length;
+
+  let buttons = [];
+  if (wrongIds.length > 0) {
+    buttons.push(`<button class="btn" id="next-drill-wrong">↻ Drill the ${wrongIds.length} I got wrong</button>`);
+  }
+  if (weakNow > 0) {
+    buttons.push(`<button class="btn ghost" id="next-drill-weak">⚠ Weak words (${weakNow})</button>`);
+  }
+  buttons.push(`<button class="btn ghost" id="next-back-start">← Back to topics</button>`);
+
+  nextActionsEl.innerHTML = buttons.join('');
+
+  if (wrongIds.length > 0) {
+    $('next-drill-wrong').addEventListener('click', () => {
+      const qs = shuffle(ALL_QUESTIONS.filter(q => wrongIds.includes(q.id)));
+      state = { questions: qs, index: 0, score: 0, answered: [], mode: 'wrong-followup' };
+      resultsScreen.classList.add('hidden');
+      quizScreen.classList.remove('hidden');
+      renderQuestion();
+      scrollTop();
+    });
+  }
+  if (weakNow > 0) {
+    $('next-drill-weak').addEventListener('click', () => startQuiz('weak'));
+  }
+  $('next-back-start').addEventListener('click', goToStart);
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  if (quizScreen.classList.contains('hidden')) return;
+  if (['1','2','3','4'].includes(e.key)) {
+    const idx = parseInt(e.key) - 1;
+    const opt = optionsEl.children[idx];
+    if (opt && !opt.disabled) opt.click();
+  } else if (e.key === 'Enter' && !nextBtn.disabled) {
+    nextBtn.click();
+  } else if (e.key === ' ' || e.key === 's') {
+    // Spacebar or 's' to speak the current German word
+    const firstSpeakable = questionText.querySelector('.de[data-speak]');
+    if (firstSpeakable) {
+      e.preventDefault();
+      speak(firstSpeakable.getAttribute('data-speak'));
+    }
+  }
+});
+
+// Initialise
+refreshDashboard();
+buildRoundsList();
+</script>
+</body>
+</html>
